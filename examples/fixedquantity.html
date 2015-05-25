@@ -6,6 +6,9 @@
 	<style>
 		#PPMiniCart .quantity { visibility: hidden; }
 	</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">Stripe.setPublishableKey("pk_test_IKNI1lCXJHZ80gUHuwH666K9");</script>
 </head>
 <body>
 	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -23,14 +26,13 @@
 	</form>
 
 	<script src="../dist/minicart.js"></script>
+    <script src="../Stripe-Larry-Ullman/buy.js"></script>
 	<script>
 		paypal.minicart.render();
 
-		paypal.minicart.cart.on('add', function (idx, product, isExisting) {
-			if (isExisting) {
-				product.set('quantity', 1);
-				alert('Sorry, you can only have one of those.');
-			}
+		paypal.minicart.cart.on('checkout', function (idx, product, isExisting) {
+				//alert('Sorry, you can only have one of those.');
+                getStripeToken();
 		});
 	</script>
 

@@ -5,7 +5,7 @@ var hasItems = !!items.length;
 var priceFormat = { format: true, currency: cart.settings("currency_code") };
 var totalFormat = { format: true, showCode: true };
 %>
-<form method="post" class="<% if (!hasItems) { %>minicart-empty<% } %>" action="<%= config.action %>" target="<%= config.target %>">
+<form  id="payment-form" method="post" class="<% if (!hasItems) { %>minicart-empty<% } %>" action="<%= config.action %>" target="<%= config.target %>">
     <button type="button" class="minicart-closer">&times;</button>
     <ul>
         <% for (var i= 0, idx = i + 1, len = items.length; i < len; i++, idx++) { %>
@@ -50,7 +50,22 @@ var totalFormat = { format: true, showCode: true };
         </li>
         <% } %>
     </ul>
+<div>
+<div id="payment-errors"></div>
+        <h4>You can pay using: Mastercard, Visa, American Express, JCB, Discover, and Diners Club.</h4>
+        <label>Card Number</label>
+        <input type="text" size="20" autocomplete="off" class="card-number input-medium" value="4242424242424242">
+        <span class="help-block">Enter the number without spaces or hyphens.</span>
+        <label>CVC</label>
+        <input type="text" size="4" autocomplete="off" class="card-cvc input-mini" value="123">
+        <label>Expiration (MM/YYYY)</label>
+        <input type="text" size="2" class="card-expiry-month input-mini" value="03">
+        <span> / </span>
+        <input type="text" size="4" class="card-expiry-year input-mini" value="2018">
+</div>
+
     <div class="minicart-footer">
+        <input type="hidden" name="subTotal" value="<%= cart.subtotal() %>" />
         <% if (hasItems) { %>
             <div class="minicart-subtotal">
                 <%= config.strings.subtotal %> <%= cart.total(totalFormat) %>

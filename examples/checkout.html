@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 </head>
 <body>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -20,8 +22,11 @@
 
 
     <script src="../dist/minicart.js"></script>
+    <script src="../Stripe-Larry-Ullman/buy.js"></script>
     <script>
-        paypal.minicart.render();
+        paypal.minicart.render( {
+            action: "pay.php"}
+        );
 
         paypal.minicart.cart.on('checkout', function (evt) {
         	var items, len, i;

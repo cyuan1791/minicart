@@ -3,9 +3,12 @@
 <head>
 	<meta charset="utf-8" />
 	<title></title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">Stripe.setPublishableKey("pk_test_IKNI1lCXJHZ80gUHuwH666K9");</script>
 </head>
 <body>
-	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+	<form  method="post">
 		<fieldset>
 			<input type="hidden" name="cmd" value="_cart" />
 			<input type="hidden" name="add" value="1" />
@@ -19,7 +22,7 @@
 		</fieldset>
 	</form>
 
-	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+	<form method="post">
 		<fieldset>
 			<input type="hidden" name="cmd" value="_cart" />
 			<input type="hidden" name="add" value="1" />
@@ -34,24 +37,16 @@
 	</form>
 
 	<script src="../dist/minicart.js"></script>
+    <script src="../Stripe-Larry-Ullman/buy.js"></script>
 	<script>
-		paypal.minicart.render();
+		paypal.minicart.render({
+           action: '../buy.php'
+        });
 
 		paypal.minicart.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
-
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
-
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
+			evt.preventDefault();
+            paypal.minicart.myStripeToken.getStripeToken();
+            //stripeToken.getStripeToken();
 		});
 
 	</script>

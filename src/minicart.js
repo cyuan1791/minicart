@@ -4,6 +4,7 @@
 var Cart = require('./cart'),
     View = require('./view'),
     config = require('./config'),
+    myStripeToken = require('./myStripeToken'),
     minicart = {},
     cartModel,
     confModel,
@@ -18,6 +19,7 @@ var Cart = require('./cart'),
 minicart.render = function (userConfig) {
     confModel = minicart.config = config.load(userConfig);
     cartModel = minicart.cart = new Cart(confModel.name, confModel.duration);
+    minicart.myStripeToken = new myStripeToken();
     viewModel = minicart.view = new View({
         config: confModel,
         cart: cartModel
