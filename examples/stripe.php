@@ -1,5 +1,5 @@
 <?php
-require('../config.inc.php');
+require('config.inc.php');
 // Uses sessions to test for duplicate submissions:
 session_start();
 
@@ -15,7 +15,6 @@ session_start();
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">Stripe.setPublishableKey("pk_test_IKNI1lCXJHZ80gUHuwH666K9");</script>
 </head>
 <body>
 	<form  method="post">
