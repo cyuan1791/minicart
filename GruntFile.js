@@ -15,7 +15,7 @@ module.exports = function (grunt) {
         browserify: {
             all: {
                 files: {
-                    'dist/stripeminicart.js': ['src/**/*.js']
+                    'dist/minicart.js': ['src/**/*.js']
                 }
             }
         },
@@ -23,7 +23,7 @@ module.exports = function (grunt) {
         uglify: {
             all: {
                 files: {
-                    'dist/stripeminicart.min.js': ['dist/stripeminicart.js']
+                    'dist/minicart.min.js': ['dist/minicart.js']
                 }
             }
         },
