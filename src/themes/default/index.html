@@ -50,19 +50,28 @@ var totalFormat = { format: true, showCode: true };
         </li>
         <% } %>
     </ul>
-<div>
+<table class="table table-condensed">
+<tr> <td colspan="2">
 <div id="payment-errors"></div>
-        <h4>You can pay using: Mastercard, Visa, American Express, JCB, Discover, and Diners Club.</h4>
+</td></tr>
+<tr> <td colspan="2">
+        You can pay using: Mastercard, Visa, JCB, Discover, American Express, and Diners Club.
+</td></tr>
+<tr> <td colspan="2">
         <label>Card Number</label>
-        <input type="text" size="20" autocomplete="off" class="card-number input-medium" value="4242424242424242">
+        <input type="text" size="17" autocomplete="off" class="card-number input-medium" value="4242424242424242">
+      <label>CVC</label> <input type="text" size="2" autocomplete="off" class="card-cvc input-mini" value="123">
+</td></tr>
+<tr> <td colspan="2">
         <span class="help-block">Enter the number without spaces or hyphens.</span>
-        <label>CVC</label>
-        <input type="text" size="4" autocomplete="off" class="card-cvc input-mini" value="123">
+</td></tr>
+<tr> <td colspan="2">
         <label>Expiration (MM/YYYY)</label>
         <input type="text" size="2" class="card-expiry-month input-mini" value="03">
         <span> / </span>
         <input type="text" size="4" class="card-expiry-year input-mini" value="2018">
-</div>
+</td></tr>
+</table>
 
     <div class="minicart-footer">
         <input type="hidden" name="subTotal" value="<%= cart.subtotal() %>" />
