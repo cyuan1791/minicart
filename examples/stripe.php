@@ -80,6 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['subTotal'])) {
 	    $amount = intval($_POST['subTotal']) * 100; 
     }
+	$currency_code = 'USD'; 
+	if (isset($_POST['currency_code'])) {
+	    $currency_code = $_POST['currency_code']; 
+    }
 	$email = 'cyuan123@live.com'; // $20, in cents
 
 	// Validate other form data!
@@ -101,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// Charge the order:
 			$charge = \Stripe\Charge::create(array(
 				"amount" => $amount, // amount in cents, again
-				"currency" => "usd",
+				"currency" => $currency_code,
 				"source" => $token,
 				"description" => $email
 				)
