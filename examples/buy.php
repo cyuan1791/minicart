@@ -14,10 +14,10 @@ session_start();
 </head>
 <body>
 
-<!-- <myresult></myresult> custom tag was used to by myStripeToken.js to parse out via ajax form request. -->
 <myresult>
 <?php
 
+var_dump($_POST);
 // Check for a form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

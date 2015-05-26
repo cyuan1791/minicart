@@ -79,17 +79,23 @@ myStripeToken.prototype.stripeResponseHandler =  function stripeResponseHandler(
 	  // Insert the token into the form so it gets submitted to the server
 	  frm.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
 
-	  // Submit the form:
-	  //f.get(0).submit();
+	  // ajax Submit the form:
+      // 
       frm.submit(function (ev) {
         $.ajax({
             type: frm.attr('method'),
             url: frm.attr('action'),
             data: frm.serialize(),
             success: function (data) {
+                // close the popup
                 $("#minicart-close").click();
-                //alert(data);
-                var text = data.match(/<myresult[^>]*>([^<]+)<\/myresult>/)[1];
+                // extract content between tag <myresult></myresult>
+                // from ajax response and put into current page's
+                // <div id="result> </div>
+                //var text = data.match(/<myresult[^>]*>([^<]+)<\/myresult>/)[1];
+                var startTag = data.indexOf('<myresult>');
+                var endTag = data.indexOf('</myresult>');
+                var text = data.substring(startTag + 10, endTag - 11);
                 $("#result").html(text);
             }
         });
