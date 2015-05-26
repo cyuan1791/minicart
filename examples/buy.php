@@ -14,6 +14,9 @@ session_start();
 </head>
 <body>
 
+// myresult are special tag used by myStripeToken.js to parse out result
+// this file is for ajax request to communicate to stripe server to 
+// process payment
 <myresult>
 <?php
 
