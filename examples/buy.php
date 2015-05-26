@@ -53,7 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['currency_code'])) {
 	    $currency_code = $_POST['currency_code']; 
     }
-	$email = 'cyuan123@live.com'; // $20, in cents
+
+	$email = 'cyuan123@live.com'; 
+	if (isset($_POST['business'])) {
+	    $email = $_POST['business']; 
+    }
 
 	// Validate other form data!
 
