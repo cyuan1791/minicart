@@ -156,11 +156,12 @@ echo '<script type="text/javascript">Stripe.setPublishableKey("' . STRIPE_PUBLIC
 			echo '</ul></div>';
 		}?>
 
+		<div id="payment-errors"></div>
 
 	<script src="../dist/minicart.js"></script>
 	<script>
 		paypal.minicart.render({
-           action: 'buy.php'
+           action: '#'
         });
 
 		paypal.minicart.cart.on('checkout', function (evt) {

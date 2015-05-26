@@ -6,7 +6,7 @@ var priceFormat = { format: true, currency: cart.settings("currency_code") };
 var totalFormat = { format: true, showCode: true };
 %>
 <form  id="payment-form" method="post" class="<% if (!hasItems) { %>minicart-empty<% } %>" action="<%= config.action %>" target="<%= config.target %>">
-    <button type="button" class="minicart-closer">&times;</button>
+    <button type="button" id="minicart-close" class="minicart-closer">&times;</button>
     <ul>
         <% for (var i= 0, idx = i + 1, len = items.length; i < len; i++, idx++) { %>
         <li class="minicart-item">
@@ -60,7 +60,7 @@ var totalFormat = { format: true, showCode: true };
 <tr> <td colspan="2">
         <label>Card Number</label>
         <input type="text" size="17" autocomplete="off" class="card-number input-medium" value="4242424242424242">
-      <label>CVC</label> <input type="text" size="2" autocomplete="off" class="card-cvc input-mini" value="123">
+      <label>CVC</label> <input type="text" size="3" autocomplete="off" class="card-cvc input-mini" value="123">
 </td></tr>
 <tr> <td colspan="2">
         <span class="help-block">Enter the number without spaces or hyphens.</span>
@@ -73,7 +73,7 @@ var totalFormat = { format: true, showCode: true };
 </td></tr>
 </table>
 
-    <div class="minicart-footer">
+    <div id="form-submit" class="minicart-footer">
         <input type="hidden" name="subTotal" value="<%= cart.subtotal() %>" />
         <% if (hasItems) { %>
             <div class="minicart-subtotal">

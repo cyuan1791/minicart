@@ -70,18 +70,32 @@ myStripeToken.prototype.stripeResponseHandler =  function stripeResponseHandler(
 
 	} else { // No errors, submit the form:
 
-	  var f = $("#payment-form");
+
+	  var frm = $("#payment-form");
 
 	  // Token contains id, last4, and card type:
 	  var token = response['id'];
 
 	  // Insert the token into the form so it gets submitted to the server
-	  f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+	  frm.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
 
 	  // Submit the form:
-	  f.get(0).submit();
+	  //f.get(0).submit();
+      frm.submit(function (ev) {
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                $("#minicart-close").click();
+                alert(data);
+            }
+        });
 
-	}
+        ev.preventDefault();
+      });
+      frm.submit();
+   }
 
 } // End of stripeResponseHandler() function.
 
