@@ -10,44 +10,9 @@ session_start();
 	<meta charset="utf-8" />
 	<title></title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript" language="javascript"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 </head>
 <body>
-	<form  method="post">
-		<fieldset>
-			<input type="hidden" name="cmd" value="_cart" />
-			<input type="hidden" name="add" value="1" />
-			<input type="hidden" name="business" value="example@minicartjs.com" />
-			<input type="hidden" name="item_name" value="Test Product" />
-			<input type="hidden" name="quantity" value="1" />
-			<input type="hidden" name="amount" value="1.00" />
-			<input type="hidden" name="currency_code" value="USD" />
-			<strong>Test Product</strong>
-			<input type="submit" name="submit" value="Add to cart" />
-		</fieldset>
-	</form>
-
-	<form method="post">
-		<fieldset>
-			<input type="hidden" name="cmd" value="_cart" />
-			<input type="hidden" name="add" value="1" />
-			<input type="hidden" name="business" value="labs-feedback-minicart@paypal.com" />
-			<input type="hidden" name="item_name" value="Test Product 2" />
-			<input type="hidden" name="quantity" value="1" />
-			<input type="hidden" name="amount" value="1.00" />
-			<input type="hidden" name="currency_code" value="USD" />
-			<strong>Test Product 2</strong>
-			<input type="submit" name="submit" value="Add to cart" />
-		</fieldset>
-	</form>
-
-
-
-
 <?php
 
 var_dump($_POST);
@@ -156,20 +121,5 @@ echo '<script type="text/javascript">Stripe.setPublishableKey("' . STRIPE_PUBLIC
 			echo '</ul></div>';
 		}?>
 
-		<div id="payment-errors"></div>
-
-	<script src="../dist/minicart.js"></script>
-	<script>
-		paypal.minicart.render({
-           action: '#'
-        });
-
-		paypal.minicart.cart.on('checkout', function (evt) {
-			evt.preventDefault();
-            paypal.minicart.myStripeToken.getStripeToken();
-            //stripeToken.getStripeToken();
-		});
-
-	</script>
 </body>
 </html>

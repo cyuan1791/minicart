@@ -2097,7 +2097,6 @@ myStripeToken.prototype.stripeResponseHandler =  function stripeResponseHandler(
 
 	} else { // No errors, submit the form:
 
-	$('#form-submit').text('Processing Payment! Please wait!').addClass('alert alert-error');
 
 	  var frm = $("#payment-form");
 
@@ -3128,5 +3127,5 @@ module.exports = viewevents = {
 
 };
 
-},{"./constants":11,"./util/events":17}]},{},[9,10,11,12,14,13,15,16,17,18,19,20,21,22,23,24])
+},{"./constants":11,"./util/events":17}]},{},[9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24])
 ;
