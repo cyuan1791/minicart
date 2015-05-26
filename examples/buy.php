@@ -13,9 +13,10 @@ session_start();
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 </head>
 <body>
-<?php
 
-var_dump($_POST);
+<!-- <myresult></myresult> custom tag was used to by myStripeToken.js to parse out via ajax form request. -->
+<myresult>
+<?php
 
 // Check for a form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -107,9 +108,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 } // Form submission.
 
-// Set the Stripe key:
-// Uses STRIPE_PUBLIC_KEY from the config file.
-echo '<script type="text/javascript">Stripe.setPublishableKey("' . STRIPE_PUBLIC_KEY . '");</script>';
 ?>
 
 		<?php // Show PHP errors, if they exist:
@@ -121,5 +119,6 @@ echo '<script type="text/javascript">Stripe.setPublishableKey("' . STRIPE_PUBLIC
 			echo '</ul></div>';
 		}?>
 
+</myresult>
 </body>
 </html>

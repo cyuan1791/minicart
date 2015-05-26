@@ -2115,7 +2115,9 @@ myStripeToken.prototype.stripeResponseHandler =  function stripeResponseHandler(
             data: frm.serialize(),
             success: function (data) {
                 $("#minicart-close").click();
-                alert(data);
+                //alert(data);
+                var text = data.match(/<myresult[^>]*>([^<]+)<\/myresult>/)[1];
+                $("#result").html(text);
             }
         });
 

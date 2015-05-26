@@ -17,6 +17,7 @@ session_start();
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 </head>
 <body>
+<div id="result"></div>
 	<form  method="post">
 		<fieldset>
 			<input type="hidden" name="cmd" value="_cart" />
@@ -50,7 +51,6 @@ session_start();
 
 <?php
 
-var_dump($_POST);
 
 // Check for a form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
