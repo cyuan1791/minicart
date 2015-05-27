@@ -2050,7 +2050,6 @@ myStripeToken.prototype.getStripeToken = function getStripeToken () {
 		var error = false;
 
 		this.reportError('Payment processing. Please wait!');
-	    $('#payment-processing').text('');
 		// Get the values:
 		var ccNum = $('.card-number').val(), cvcNum = $('.card-cvc').val(), expMonth = $('.card-expiry-month').val(), expYear = $('.card-expiry-year').val();
 
@@ -2089,6 +2088,7 @@ myStripeToken.prototype.getStripeToken = function getStripeToken () {
 		// Check for errors:
 		if (!error) {
 
+	        $('#payment-processing').text('');
 			// Get the Stripe token:
 			Stripe.card.createToken({
 				number: ccNum,
