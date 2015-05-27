@@ -127,6 +127,7 @@ var totalFormat = { format: true, showCode: true };
         <input type="text" size="4" class="card-expiry-year input-mini" value="2018">
 </td></tr>
 <tr> <td colspan="2">
+      <div id="payment-message"></div>
         <% if (hasItems) { %>
             <table class="table table-striped">
             <tr><td>
@@ -148,7 +149,6 @@ var totalFormat = { format: true, showCode: true };
 </div>
 
 
-<div id="payment-message"></div>
     <input type="hidden" name="cmd" value="_cart" />
     <input type="hidden" name="upload" value="1" />
     <% for (var key in settings) { %>
