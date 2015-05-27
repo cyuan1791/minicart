@@ -8,9 +8,9 @@
 // This function is just used to display error messages on the page.
 // Assumes there's an element with an ID of "payment-errors".
 
-function  myStripeToken() {}
+function  myStripe() {}
 
-myStripeToken.prototype.reportError = function reportError(msg) {
+myStripe.prototype.reportError = function reportError(msg) {
 	// Show the error in the form:
     //alert(msg);
 	$('#payment-message').text(msg).addClass('alert alert-warning');
@@ -18,7 +18,7 @@ myStripeToken.prototype.reportError = function reportError(msg) {
 };
 
 
-myStripeToken.prototype.getStripeToken = function getStripeToken () {
+myStripe.prototype.submit = function submit () {
 		// Flag variable:
 		var error = false;
 
@@ -75,7 +75,7 @@ myStripeToken.prototype.getStripeToken = function getStripeToken () {
 },
 
 // Function handles the Stripe response:
-myStripeToken.prototype.stripeResponseHandler =  function stripeResponseHandler(status, response) {
+myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(status, response) {
 
 	// Check for an error:
 	if (response.error) {
@@ -121,4 +121,4 @@ myStripeToken.prototype.stripeResponseHandler =  function stripeResponseHandler(
 
 } // End of stripeResponseHandler() function.
 
-module.exports = myStripeToken
+module.exports = myStripe

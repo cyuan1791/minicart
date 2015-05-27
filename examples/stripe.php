@@ -170,7 +170,8 @@ echo '<script type="text/javascript">Stripe.setPublishableKey("' . STRIPE_PUBLIC
 
 		paypal.minicart.cart.on('checkout', function (evt) {
 			evt.preventDefault();
-            paypal.minicart.myStripeToken.getStripeToken();
+        
+            paypal.minicart.myStripe.submit();
             //stripeToken.getStripeToken();
 		});
 

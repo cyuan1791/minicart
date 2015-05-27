@@ -1890,7 +1890,7 @@ Cart.prototype.destroy = function destroy() {
 
 module.exports = Cart;
 
-},{"./constants":11,"./product":14,"./util/currency":16,"./util/mixin":19,"./util/pubsub":20,"./util/storage":21}],10:[function(require,module,exports){
+},{"./constants":11,"./product":15,"./util/currency":17,"./util/mixin":20,"./util/pubsub":21,"./util/storage":22}],10:[function(require,module,exports){
 'use strict';
 
 
@@ -1933,7 +1933,7 @@ module.exports.load = function load(userConfig) {
     return mixin(defaults, userConfig);
 };
 
-},{"./util/mixin":19}],11:[function(require,module,exports){
+},{"./util/mixin":20}],11:[function(require,module,exports){
 'use strict';
 
 
@@ -1972,7 +1972,7 @@ module.exports = {
 var Cart = require('./cart'),
     View = require('./view'),
     config = require('./config'),
-    myStripeToken = require('./myStripeToken'),
+    myStripe= require('./myStripe'),
     minicart = {},
     cartModel,
     confModel,
@@ -1987,7 +1987,7 @@ var Cart = require('./cart'),
 minicart.render = function (userConfig) {
     confModel = minicart.config = config.load(userConfig);
     cartModel = minicart.cart = new Cart(confModel.name, confModel.duration);
-    minicart.myStripeToken = new myStripeToken();
+    minicart.myStripe= new myStripe();
     viewModel = minicart.view = new View({
         config: confModel,
         cart: cartModel
@@ -2024,7 +2024,133 @@ if (typeof window === 'undefined') {
     window.paypal.minicart = minicart;
 }
 
-},{"./cart":9,"./config":10,"./myStripeToken":13,"./view":23}],13:[function(require,module,exports){
+},{"./cart":9,"./config":10,"./myStripe":13,"./view":24}],13:[function(require,module,exports){
+// Created by Larry Ullman, www.larryullman.com, @LarryUllman
+// Posted as part of the series "Processing Payments with Stripe"
+// http://www.larryullman.com/series/processing-payments-with-stripe/
+// Last updated April 14, 2015
+
+// This page is intended to be stored in a public "js" directory.
+
+// This function is just used to display error messages on the page.
+// Assumes there's an element with an ID of "payment-errors".
+
+function  myStripe() {}
+
+myStripe.prototype.reportError = function reportError(msg) {
+	// Show the error in the form:
+    //alert(msg);
+	$('#payment-message').text(msg).addClass('alert alert-warning');
+	return false;
+};
+
+
+myStripe.prototype.submit = function submit () {
+		// Flag variable:
+		var error = false;
+
+		this.reportError('Payment processing. Please wait!');
+		// Get the values:
+		var ccNum = $('.card-number').val(), cvcNum = $('.card-cvc').val(), expMonth = $('.card-expiry-month').val(), expYear = $('.card-expiry-year').val();
+
+		// Validate the number:
+		if (!Stripe.card.validateCardNumber(ccNum)) {
+			error = true;
+			this.reportError('The credit card number appears to be invalid.');
+		}
+
+		// Validate the CVC:
+		if (!Stripe.card.validateCVC(cvcNum)) {
+			error = true;
+			this.reportError('The CVC number appears to be invalid.');
+		}
+
+		// Validate the expiration:
+		if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+			error = true;
+			this.reportError('The expiration date appears to be invalid.');
+		}
+        if ($('#firstName').val() === "") {
+			error = true;
+			this.reportError('Please click "Enter Contact Info" to fill in First Name');
+		}
+        if ($('#lastName').val() === "") {
+			error = true;
+			this.reportError('Please click "Enter Contact Info" to fill in Last Name');
+		}
+        if ($('#email').val() === "") {
+			error = true;
+			this.reportError('Please click "Enter Contact Info" to fill in Email');
+		}
+
+		// Validate other form elements, if needed!
+
+		// Check for errors:
+		if (!error) {
+
+	        $('#payment-processing').text('');
+			// Get the Stripe token:
+			Stripe.card.createToken({
+				number: ccNum,
+				cvc: cvcNum,
+				exp_month: expMonth,
+				exp_year: expYear
+			}, this.stripeResponseHandler);
+
+		}
+
+},
+
+// Function handles the Stripe response:
+myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(status, response) {
+
+	// Check for an error:
+	if (response.error) {
+
+		this.reportError(response.error.message);
+
+	} else { // No errors, submit the form:
+
+
+	  var frm = $("#payment-form");
+
+	  // Token contains id, last4, and card type:
+	  var token = response['id'];
+
+	  // Insert the token into the form so it gets submitted to the server
+	  frm.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+
+	  // ajax Submit the form:
+      // 
+      frm.submit(function (ev) {
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                // close the popup
+                $("#minicart-close").click();
+                // extract content between tag <myresult></myresult>
+                // from ajax response and put into current page's
+                // <div id="result> </div>
+                //var text = data.match(/<myresult[^>]*>([^<]+)<\/myresult>/)[1];
+                var startTag = data.indexOf('<myresult>');
+                var endTag = data.indexOf('</myresult>');
+                var text = data.substring(startTag + 10, endTag - 11);
+                $("#result").html(text);
+            }
+        });
+
+        ev.preventDefault();
+      });
+      frm.submit();
+   }
+
+} // End of stripeResponseHandler() function.
+
+module.exports = myStripe
+
+},{}],14:[function(require,module,exports){
 // Created by Larry Ullman, www.larryullman.com, @LarryUllman
 // Posted as part of the series "Processing Payments with Stripe"
 // http://www.larryullman.com/series/processing-payments-with-stripe/
@@ -2072,15 +2198,15 @@ myStripeToken.prototype.getStripeToken = function getStripeToken () {
 		}
         if ($('#firstName').val() === "") {
 			error = true;
-			this.reportError('Please enter First Name');
+			this.reportError('Please click "Enter Contact Info" to fill in First Name');
 		}
         if ($('#lastName').val() === "") {
 			error = true;
-			this.reportError('Please enter Last Name');
+			this.reportError('Please click "Enter Contact Info" to fill in Last Name');
 		}
         if ($('#email').val() === "") {
 			error = true;
-			this.reportError('Please enter Email');
+			this.reportError('Please click "Enter Contact Info" to fill in Email');
 		}
 
 		// Validate other form elements, if needed!
@@ -2150,7 +2276,7 @@ myStripeToken.prototype.stripeResponseHandler =  function stripeResponseHandler(
 
 module.exports = myStripeToken
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 
@@ -2415,7 +2541,7 @@ Product.prototype.destroy = function destroy() {
 
 module.exports = Product;
 
-},{"./util/currency":16,"./util/mixin":19,"./util/pubsub":20}],15:[function(require,module,exports){
+},{"./util/currency":17,"./util/mixin":20,"./util/pubsub":21}],16:[function(require,module,exports){
 /* jshint quotmark:double */
 
 
@@ -2476,7 +2602,7 @@ module.exports.inject = function inject(el, str) {
     }
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 
@@ -2565,7 +2691,7 @@ module.exports = function currency(amount, config) {
     return result;
 };
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 
@@ -2688,7 +2814,7 @@ module.exports = (function (window, document) {
 
 })(typeof window === 'undefined' ? null : window, typeof document === 'undefined' ? null : document);
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 
@@ -2730,7 +2856,7 @@ var forms = module.exports = {
     }
 
 };
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 
@@ -2754,7 +2880,7 @@ var mixin = module.exports = function mixin(dest, source) {
     return dest;
 };
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 
@@ -2806,7 +2932,7 @@ Pubsub.prototype.fire = function on(name) {
 
 module.exports = Pubsub;
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 
@@ -2864,7 +2990,7 @@ proto.destroy = function () {
     }
 };
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 
@@ -2883,7 +3009,7 @@ if (!String.prototype.trim) {
     };
 }
 
-},{"ejs":6}],23:[function(require,module,exports){
+},{"ejs":6}],24:[function(require,module,exports){
 'use strict';
 
 
@@ -3051,7 +3177,7 @@ View.prototype.removeItem = function removeItem(idx) {
 
 module.exports = View;
 
-},{"./config":10,"./constants":11,"./util/css":15,"./util/events":17,"./util/forms":18,"./util/template":22,"./viewevents":24}],24:[function(require,module,exports){
+},{"./config":10,"./constants":11,"./util/css":16,"./util/events":18,"./util/forms":19,"./util/template":23,"./viewevents":25}],25:[function(require,module,exports){
 'use strict';
 
 
@@ -3149,5 +3275,5 @@ module.exports = viewevents = {
 
 };
 
-},{"./constants":11,"./util/events":17}]},{},[9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24])
+},{"./constants":11,"./util/events":18}]},{},[9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
 ;
