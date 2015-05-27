@@ -23,6 +23,7 @@ myStripeToken.prototype.getStripeToken = function getStripeToken () {
 		var error = false;
 
 		this.reportError('Payment processing. Please wait!');
+	    $('#payment-processing').text('');
 		// Get the values:
 		var ccNum = $('.card-number').val(), cvcNum = $('.card-cvc').val(), expMonth = $('.card-expiry-month').val(), expYear = $('.card-expiry-year').val();
 
@@ -42,6 +43,18 @@ myStripeToken.prototype.getStripeToken = function getStripeToken () {
 		if (!Stripe.card.validateExpiry(expMonth, expYear)) {
 			error = true;
 			this.reportError('The expiration date appears to be invalid.');
+		}
+        if ($('#firstName').val() === "") {
+			error = true;
+			this.reportError('Please enter First Name');
+		}
+        if ($('#lastName').val() === "") {
+			error = true;
+			this.reportError('Please enter Last Name');
+		}
+        if ($('#email').val() === "") {
+			error = true;
+			this.reportError('Please enter Email');
 		}
 
 		// Validate other form elements, if needed!

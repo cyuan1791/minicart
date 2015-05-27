@@ -80,16 +80,16 @@ var totalFormat = { format: true, showCode: true };
     <div class="panel-heading" role="tab" id="headingTwo">
       <h4 class="panel-title">
         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-         Contact Info
+         Enter Contact Info
         </a>
       </h4>
     </div>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
          <table class="table table-condensed">
-         <tr> <td> First Name </td><td><input type="text" name="firstName" value="" /></td></tr>
-         <tr> <td> Last Name </td><td><input type="text" name="lastName" value="" /></td></tr>
-         <tr> <td> Email </td><td><input type="text" name="Email" value="" /></td></tr>
+         <tr> <td> First Name </td><td><input type="text" id="firstName" name="firstName" value="" /></td></tr>
+         <tr> <td> Last Name </td><td><input type="text" id="lastName" name="lastName" value="" /></td></tr>
+         <tr> <td> Email </td><td><input type="text" id="email" name="Email" value="" /></td></tr>
          </table>
     
       </div>
@@ -100,7 +100,7 @@ var totalFormat = { format: true, showCode: true };
     <div class="panel-heading" role="tab" id="headingThree">
       <h4 class="panel-title">
         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Credit Card Payment
+        Payment
         </a>
       </h4>
     </div>
@@ -128,6 +128,7 @@ var totalFormat = { format: true, showCode: true };
 </td></tr>
 <tr> <td colspan="2">
       <div id="payment-message"></div>
+      <div id="payment-processing">
         <% if (hasItems) { %>
             <table class="table table-striped">
             <tr><td>
@@ -141,6 +142,7 @@ var totalFormat = { format: true, showCode: true };
         <% } else { %>
             <p class="minicart-empty-text"><%= config.strings.empty %></p>
         <% } %>
+       </div>
 </td></tr>
 </table>
       </div>
