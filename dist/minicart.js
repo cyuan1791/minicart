@@ -2040,7 +2040,7 @@ function  myStripeToken() {}
 myStripeToken.prototype.reportError = function reportError(msg) {
 	// Show the error in the form:
     //alert(msg);
-	$('#payment-message').text(msg).addClass('alert alert-error');
+	$('#payment-message').text(msg).addClass('alert alert-warning');
 	return false;
 };
 
