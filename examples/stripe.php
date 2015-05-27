@@ -171,8 +171,10 @@ echo '<script type="text/javascript">Stripe.setPublishableKey("' . STRIPE_PUBLIC
 		paypal.minicart.cart.on('checkout', function (evt) {
 			evt.preventDefault();
         
+            // stripe submit 
+            // (1) gether credit cart info and send to stripe.com to get token            // (2) Insert token into form and submit the form (action)
+            // (3) Form action will communicate to stripe.com and charge
             paypal.minicart.myStripe.submit();
-            //stripeToken.getStripeToken();
 		});
 
 	</script>

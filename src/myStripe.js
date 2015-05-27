@@ -10,7 +10,7 @@
 
 function  myStripe() {}
 
-myStripe.prototype.reportError = function reportError(msg) {
+myStripe.prototype.reportMessage = function reportMessage(msg) {
 	// Show the error in the form:
     //alert(msg);
 	$('#payment-message').text(msg).addClass('alert alert-warning');
@@ -22,38 +22,38 @@ myStripe.prototype.submit = function submit () {
 		// Flag variable:
 		var error = false;
 
-		this.reportError('Payment processing. Please wait!');
+		this.reportMessage('Payment processing. Please wait!');
 		// Get the values:
 		var ccNum = $('.card-number').val(), cvcNum = $('.card-cvc').val(), expMonth = $('.card-expiry-month').val(), expYear = $('.card-expiry-year').val();
 
 		// Validate the number:
 		if (!Stripe.card.validateCardNumber(ccNum)) {
 			error = true;
-			this.reportError('The credit card number appears to be invalid.');
+			this.reportMessage('The credit card number appears to be invalid.');
 		}
 
 		// Validate the CVC:
 		if (!Stripe.card.validateCVC(cvcNum)) {
 			error = true;
-			this.reportError('The CVC number appears to be invalid.');
+			this.reportMessage('The CVC number appears to be invalid.');
 		}
 
 		// Validate the expiration:
 		if (!Stripe.card.validateExpiry(expMonth, expYear)) {
 			error = true;
-			this.reportError('The expiration date appears to be invalid.');
+			this.reportMessage('The expiration date appears to be invalid.');
 		}
         if ($('#firstName').val() === "") {
 			error = true;
-			this.reportError('Please click "Enter Contact Info" to fill in First Name');
+			this.reportMessage('Please click "Enter Contact Info" to fill in First Name');
 		}
         if ($('#lastName').val() === "") {
 			error = true;
-			this.reportError('Please click "Enter Contact Info" to fill in Last Name');
+			this.reportMessage('Please click "Enter Contact Info" to fill in Last Name');
 		}
         if ($('#email').val() === "") {
 			error = true;
-			this.reportError('Please click "Enter Contact Info" to fill in Email');
+			this.reportMessage('Please click "Enter Contact Info" to fill in Email');
 		}
 
 		// Validate other form elements, if needed!
@@ -61,6 +61,7 @@ myStripe.prototype.submit = function submit () {
 		// Check for errors:
 		if (!error) {
 
+            // remove form button
 	        $('#payment-processing').text('');
 			// Get the Stripe token:
 			Stripe.card.createToken({
@@ -80,7 +81,7 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
 	// Check for an error:
 	if (response.error) {
 
-		this.reportError(response.error.message);
+		this.reportMessage(response.error.message);
 
 	} else { // No errors, submit the form:
 
@@ -116,6 +117,7 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
 
         ev.preventDefault();
       });
+
       frm.submit();
    }
 
