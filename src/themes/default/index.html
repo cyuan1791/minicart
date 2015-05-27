@@ -128,10 +128,15 @@ var totalFormat = { format: true, showCode: true };
 </td></tr>
 <tr> <td colspan="2">
         <% if (hasItems) { %>
-            <div class="minicart-subtotal">
+            <table class="table table-striped">
+            <tr><td>
+            <h5  class="text-warning">
                 <%= config.strings.subtotal %> <%= cart.total(totalFormat) %>
+            </h5>
+            </td> <td>
+            <button class="btn btn-info" type="submit" data-minicart-alt="<%= config.strings.buttonAlt %>"><%- config.strings.button %></button>
             </div>
-            <button class="minicart-submit" type="submit" data-minicart-alt="<%= config.strings.buttonAlt %>"><%- config.strings.button %></button>
+            </td></table>
         <% } else { %>
             <p class="minicart-empty-text"><%= config.strings.empty %></p>
         <% } %>
