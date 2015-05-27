@@ -13,7 +13,7 @@ function  myStripeToken() {}
 myStripeToken.prototype.reportError = function reportError(msg) {
 	// Show the error in the form:
     //alert(msg);
-	$('#payment-errors').text(msg).addClass('alert alert-error');
+	$('#payment-message').text(msg).addClass('alert alert-error');
 	return false;
 };
 
@@ -22,7 +22,7 @@ myStripeToken.prototype.getStripeToken = function getStripeToken () {
 		// Flag variable:
 		var error = false;
 
-	    $('#form-submit').text("Payment processing. Please wait!").addClass('alert alert-error');
+		this.reportError('Payment processing. Please wait!');
 		// Get the values:
 		var ccNum = $('.card-number').val(), cvcNum = $('.card-cvc').val(), expMonth = $('.card-expiry-month').val(), expYear = $('.card-expiry-year').val();
 
