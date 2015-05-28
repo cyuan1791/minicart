@@ -111,7 +111,8 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
                 var startTag = data.indexOf('<myresult>');
                 var endTag = data.indexOf('</myresult>');
                 var text = data.substring(startTag + 10, endTag - 11);
-                $("#result").html(text);
+                //$("#result").html(text);
+                $(paypal.minicart.config.result).html(text);
             }
         });
 

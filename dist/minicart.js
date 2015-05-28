@@ -1890,7 +1890,7 @@ Cart.prototype.destroy = function destroy() {
 
 module.exports = Cart;
 
-},{"./constants":11,"./product":15,"./util/currency":17,"./util/mixin":20,"./util/pubsub":21,"./util/storage":22}],10:[function(require,module,exports){
+},{"./constants":11,"./product":14,"./util/currency":16,"./util/mixin":19,"./util/pubsub":20,"./util/storage":21}],10:[function(require,module,exports){
 'use strict';
 
 
@@ -1913,6 +1913,8 @@ var defaults = module.exports = {
 
     styles: '@keyframes pop-in {    0% { opacity: 0; transform: scale(0.1); }    60% { opacity: 1; transform: scale(1.2); }    100% { transform: scale(1); }}@-webkit-keyframes pop-in {    0% { opacity: 0; -webkit-transform: scale(0.1); }    60% { opacity: 1; -webkit-transform: scale(1.2); }    100% { -webkit-transform: scale(1); }}@-moz-keyframes pop-in {    0% { opacity: 0; -moz-transform: scale(0.1); }    60% { opacity: 1; -moz-transform: scale(1.2); }    100% { -moz-transform: scale(1); }}.minicart-showing #PPMiniCart {    display: block;    transform: translateZ(0);    -webkit-transform: translateZ(0);    -moz-transform: translateZ(0);    animation: pop-in 0.25s;    -webkit-animation: pop-in 0.25s;    -moz-animation: pop-in 0.25s;}#PPMiniCart {    display: none;    position: fixed;    left: 60%;    top: 75px;}#PPMiniCart form {    position: relative;    width: 330px;    max-height: 500px;    margin-left: -200px;    padding: 0px 0px 40px;    background: #fbfbfb;    border: 1px solid #d7d7d7;    border-radius: 4px;    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);    font: 12px/normal arial, helvetica;    color: #333;}#PPMiniCart form.minicart-empty {    padding-bottom: 10px;    font-size: 16px;    font-weight: bold;}#PPMiniCart ul {    clear: both;    float: left;    width: 294px;    margin: 0px 0 10px;    padding: 5px;    list-style-type: none;    background: #fff;    border: 1px solid #ccc;    border-radius: 4px;    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);}#PPMiniCart .minicart-empty ul {    display: none;}#PPMiniCart .minicart-closer {    float: right;    margin: -12px -10px 0;    padding: 20px;    background: 0;    border: 0;    font-size: 18px;    cursor: pointer;    font-weight: bold;}#PPMiniCart .minicart-item {    clear: left;    padding: 6px 0;    min-height: 25px;}#PPMiniCart .minicart-item + .minicart-item {    border-top: 1px solid #f2f2f2;}#PPMiniCart .minicart-item a {    color: #333;    text-decoration: none;}#PPMiniCart .minicart-details-name {    float: left;    width: 62%;}#PPMiniCart .minicart-details-quantity {    float: left;    width: 15%;}#PPMiniCart .minicart-details-remove {    float: left;    width: 7%;}#PPMiniCart .minicart-details-price {    float: left;    width: 16%;    text-align: right;}#PPMiniCart .minicart-attributes {    margin: 0;    padding: 0;    background: transparent;    border: 0;    border-radius: 0;    box-shadow: none;    color: #999;    font-size: 12px;    line-height: 22px;}#PPMiniCart .minicart-attributes li {    display: inline;}#PPMiniCart .minicart-attributes li:after {    content: ",";}#PPMiniCart .minicart-attributes li:last-child:after {    content: "";}#PPMiniCart .minicart-quantity {    width: 30px;    height: 18px;    padding: 2px 4px;    border: 1px solid #ccc;    border-radius: 4px;    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);    font-size: 13px;    text-align: right;    transition: border linear 0.2s, box-shadow linear 0.2s;    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;}#PPMiniCart .minicart-quantity:hover {    border-color: #0078C1;}#PPMiniCart .minicart-quantity:focus {    border-color: #0078C1;    outline: 0;    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(0, 120, 193, 0.4);}#PPMiniCart .minicart-remove {    width: 18px;    height: 19px;    margin: 2px 0 0;    padding: 0;    background: #b7b7b7;    border: 1px solid #a3a3a3;    border-radius: 3px;    color: #fff;    font-size: 13px;    opacity: 0.70;    cursor: pointer;}#PPMiniCart .minicart-remove:hover {    opacity: 1;}#PPMiniCart .minicart-footer {    clear: left;}#PPMiniCart .minicart-subtotal {    position: absolute;    bottom: 17px;    padding-left: 6px;    left: 10px;    font-size: 16px;    font-weight: bold;}#PPMiniCart .minicart-submit {    position: absolute;    bottom: 10px;    right: 10px;    min-width: 123px;    height: 33px;    margin-right: 6px;    padding: 0 9px;    border: 1px solid #ffc727;    border-radius: 5px;    color: #000;    text-shadow: 1px 1px 1px #fff6e9;    cursor: pointer;    background: #ffaa00;    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZjZlOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmFhMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);    background: -moz-linear-gradient(top, #fff6e9 0%, #ffaa00 100%);    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff6e9), color-stop(100%,#ffaa00));    background: -webkit-linear-gradient(top, #fff6e9 0%,#ffaa00 100%);    background: -o-linear-gradient(top, #fff6e9 0%,#ffaa00 100%);    background: -ms-linear-gradient(top, #fff6e9 0%,#ffaa00 100%);    background: linear-gradient(to bottom, #fff6e9 0%,#ffaa00 100%);}#PPMiniCart .minicart-submit img {    vertical-align: middle;    padding: 4px 0 0 2px;}#accordion {    margin: 3px;}',
 
+    result: '#result',
+
     strings: {
         button: 'Check Out',
         subtotal: 'Subtotal:',
@@ -1933,7 +1935,7 @@ module.exports.load = function load(userConfig) {
     return mixin(defaults, userConfig);
 };
 
-},{"./util/mixin":20}],11:[function(require,module,exports){
+},{"./util/mixin":19}],11:[function(require,module,exports){
 'use strict';
 
 
@@ -2024,7 +2026,7 @@ if (typeof window === 'undefined') {
     window.paypal.minicart = minicart;
 }
 
-},{"./cart":9,"./config":10,"./myStripe":13,"./view":24}],13:[function(require,module,exports){
+},{"./cart":9,"./config":10,"./myStripe":13,"./view":23}],13:[function(require,module,exports){
 // Created by Larry Ullman, www.larryullman.com, @LarryUllman
 // Posted as part of the series "Processing Payments with Stripe"
 // http://www.larryullman.com/series/processing-payments-with-stripe/
@@ -2037,7 +2039,7 @@ if (typeof window === 'undefined') {
 
 function  myStripe() {}
 
-myStripe.prototype.reportError = function reportError(msg) {
+myStripe.prototype.reportMessage = function reportMessage(msg) {
 	// Show the error in the form:
     //alert(msg);
 	$('#payment-message').text(msg).addClass('alert alert-warning');
@@ -2049,38 +2051,38 @@ myStripe.prototype.submit = function submit () {
 		// Flag variable:
 		var error = false;
 
-		this.reportError('Payment processing. Please wait!');
+		this.reportMessage('Payment processing. Please wait!');
 		// Get the values:
 		var ccNum = $('.card-number').val(), cvcNum = $('.card-cvc').val(), expMonth = $('.card-expiry-month').val(), expYear = $('.card-expiry-year').val();
 
 		// Validate the number:
 		if (!Stripe.card.validateCardNumber(ccNum)) {
 			error = true;
-			this.reportError('The credit card number appears to be invalid.');
+			this.reportMessage('The credit card number appears to be invalid.');
 		}
 
 		// Validate the CVC:
 		if (!Stripe.card.validateCVC(cvcNum)) {
 			error = true;
-			this.reportError('The CVC number appears to be invalid.');
+			this.reportMessage('The CVC number appears to be invalid.');
 		}
 
 		// Validate the expiration:
 		if (!Stripe.card.validateExpiry(expMonth, expYear)) {
 			error = true;
-			this.reportError('The expiration date appears to be invalid.');
+			this.reportMessage('The expiration date appears to be invalid.');
 		}
         if ($('#firstName').val() === "") {
 			error = true;
-			this.reportError('Please click "Enter Contact Info" to fill in First Name');
+			this.reportMessage('Please click "Enter Contact Info" to fill in First Name');
 		}
         if ($('#lastName').val() === "") {
 			error = true;
-			this.reportError('Please click "Enter Contact Info" to fill in Last Name');
+			this.reportMessage('Please click "Enter Contact Info" to fill in Last Name');
 		}
         if ($('#email').val() === "") {
 			error = true;
-			this.reportError('Please click "Enter Contact Info" to fill in Email');
+			this.reportMessage('Please click "Enter Contact Info" to fill in Email');
 		}
 
 		// Validate other form elements, if needed!
@@ -2088,6 +2090,7 @@ myStripe.prototype.submit = function submit () {
 		// Check for errors:
 		if (!error) {
 
+            // remove form button
 	        $('#payment-processing').text('');
 			// Get the Stripe token:
 			Stripe.card.createToken({
@@ -2107,7 +2110,7 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
 	// Check for an error:
 	if (response.error) {
 
-		this.reportError(response.error.message);
+		this.reportMessage(response.error.message);
 
 	} else { // No errors, submit the form:
 
@@ -2137,12 +2140,14 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
                 var startTag = data.indexOf('<myresult>');
                 var endTag = data.indexOf('</myresult>');
                 var text = data.substring(startTag + 10, endTag - 11);
-                $("#result").html(text);
+                //$("#result").html(text);
+                $(paypal.minicart.config.result).html(text);
             }
         });
 
         ev.preventDefault();
       });
+
       frm.submit();
    }
 
@@ -2151,132 +2156,6 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
 module.exports = myStripe
 
 },{}],14:[function(require,module,exports){
-// Created by Larry Ullman, www.larryullman.com, @LarryUllman
-// Posted as part of the series "Processing Payments with Stripe"
-// http://www.larryullman.com/series/processing-payments-with-stripe/
-// Last updated April 14, 2015
-
-// This page is intended to be stored in a public "js" directory.
-
-// This function is just used to display error messages on the page.
-// Assumes there's an element with an ID of "payment-errors".
-
-function  myStripeToken() {}
-
-myStripeToken.prototype.reportError = function reportError(msg) {
-	// Show the error in the form:
-    //alert(msg);
-	$('#payment-message').text(msg).addClass('alert alert-warning');
-	return false;
-};
-
-
-myStripeToken.prototype.getStripeToken = function getStripeToken () {
-		// Flag variable:
-		var error = false;
-
-		this.reportError('Payment processing. Please wait!');
-		// Get the values:
-		var ccNum = $('.card-number').val(), cvcNum = $('.card-cvc').val(), expMonth = $('.card-expiry-month').val(), expYear = $('.card-expiry-year').val();
-
-		// Validate the number:
-		if (!Stripe.card.validateCardNumber(ccNum)) {
-			error = true;
-			this.reportError('The credit card number appears to be invalid.');
-		}
-
-		// Validate the CVC:
-		if (!Stripe.card.validateCVC(cvcNum)) {
-			error = true;
-			this.reportError('The CVC number appears to be invalid.');
-		}
-
-		// Validate the expiration:
-		if (!Stripe.card.validateExpiry(expMonth, expYear)) {
-			error = true;
-			this.reportError('The expiration date appears to be invalid.');
-		}
-        if ($('#firstName').val() === "") {
-			error = true;
-			this.reportError('Please click "Enter Contact Info" to fill in First Name');
-		}
-        if ($('#lastName').val() === "") {
-			error = true;
-			this.reportError('Please click "Enter Contact Info" to fill in Last Name');
-		}
-        if ($('#email').val() === "") {
-			error = true;
-			this.reportError('Please click "Enter Contact Info" to fill in Email');
-		}
-
-		// Validate other form elements, if needed!
-
-		// Check for errors:
-		if (!error) {
-
-	        $('#payment-processing').text('');
-			// Get the Stripe token:
-			Stripe.card.createToken({
-				number: ccNum,
-				cvc: cvcNum,
-				exp_month: expMonth,
-				exp_year: expYear
-			}, this.stripeResponseHandler);
-
-		}
-
-},
-
-// Function handles the Stripe response:
-myStripeToken.prototype.stripeResponseHandler =  function stripeResponseHandler(status, response) {
-
-	// Check for an error:
-	if (response.error) {
-
-		this.reportError(response.error.message);
-
-	} else { // No errors, submit the form:
-
-
-	  var frm = $("#payment-form");
-
-	  // Token contains id, last4, and card type:
-	  var token = response['id'];
-
-	  // Insert the token into the form so it gets submitted to the server
-	  frm.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-
-	  // ajax Submit the form:
-      // 
-      frm.submit(function (ev) {
-        $.ajax({
-            type: frm.attr('method'),
-            url: frm.attr('action'),
-            data: frm.serialize(),
-            success: function (data) {
-                // close the popup
-                $("#minicart-close").click();
-                // extract content between tag <myresult></myresult>
-                // from ajax response and put into current page's
-                // <div id="result> </div>
-                //var text = data.match(/<myresult[^>]*>([^<]+)<\/myresult>/)[1];
-                var startTag = data.indexOf('<myresult>');
-                var endTag = data.indexOf('</myresult>');
-                var text = data.substring(startTag + 10, endTag - 11);
-                $("#result").html(text);
-            }
-        });
-
-        ev.preventDefault();
-      });
-      frm.submit();
-   }
-
-} // End of stripeResponseHandler() function.
-
-module.exports = myStripeToken
-
-},{}],15:[function(require,module,exports){
 'use strict';
 
 
@@ -2541,7 +2420,7 @@ Product.prototype.destroy = function destroy() {
 
 module.exports = Product;
 
-},{"./util/currency":17,"./util/mixin":20,"./util/pubsub":21}],16:[function(require,module,exports){
+},{"./util/currency":16,"./util/mixin":19,"./util/pubsub":20}],15:[function(require,module,exports){
 /* jshint quotmark:double */
 
 
@@ -2602,7 +2481,7 @@ module.exports.inject = function inject(el, str) {
     }
 };
 
-},{}],17:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 
@@ -2691,7 +2570,7 @@ module.exports = function currency(amount, config) {
     return result;
 };
 
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 
@@ -2814,7 +2693,7 @@ module.exports = (function (window, document) {
 
 })(typeof window === 'undefined' ? null : window, typeof document === 'undefined' ? null : document);
 
-},{}],19:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 
@@ -2856,7 +2735,7 @@ var forms = module.exports = {
     }
 
 };
-},{}],20:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 
@@ -2880,7 +2759,7 @@ var mixin = module.exports = function mixin(dest, source) {
     return dest;
 };
 
-},{}],21:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 
@@ -2932,7 +2811,7 @@ Pubsub.prototype.fire = function on(name) {
 
 module.exports = Pubsub;
 
-},{}],22:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 
@@ -2990,7 +2869,7 @@ proto.destroy = function () {
     }
 };
 
-},{}],23:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 
@@ -3009,7 +2888,7 @@ if (!String.prototype.trim) {
     };
 }
 
-},{"ejs":6}],24:[function(require,module,exports){
+},{"ejs":6}],23:[function(require,module,exports){
 'use strict';
 
 
@@ -3177,7 +3056,7 @@ View.prototype.removeItem = function removeItem(idx) {
 
 module.exports = View;
 
-},{"./config":10,"./constants":11,"./util/css":16,"./util/events":18,"./util/forms":19,"./util/template":23,"./viewevents":25}],25:[function(require,module,exports){
+},{"./config":10,"./constants":11,"./util/css":15,"./util/events":17,"./util/forms":18,"./util/template":22,"./viewevents":24}],24:[function(require,module,exports){
 'use strict';
 
 
@@ -3275,5 +3154,5 @@ module.exports = viewevents = {
 
 };
 
-},{"./constants":11,"./util/events":18}]},{},[9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
+},{"./constants":11,"./util/events":17}]},{},[9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24])
 ;
