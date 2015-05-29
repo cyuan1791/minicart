@@ -2019,11 +2019,11 @@ minicart.reset = function () {
 if (typeof window === 'undefined') {
     module.exports = minicart;
 } else {
-    if (!window.paypal) {
-        window.paypal = {};
+    if (!window.stripe) {
+        window.stripe = {};
     }
 
-    window.paypal.minicart = minicart;
+    window.stripe.minicart = minicart;
 }
 
 },{"./cart":9,"./config":10,"./myStripe":13,"./view":23}],13:[function(require,module,exports){
@@ -2141,8 +2141,8 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
                 var endTag = data.indexOf('</myresult>');
                 var text = data.substring(startTag + 10, endTag - 11);
                 //$("#result").html(text);
-                $(paypal.minicart.config.result).html(text);
-                paypal.minicart.reset();
+                $(stripe.minicart.config.result).html(text);
+                stripe.minicart.reset();
             }
         });
 

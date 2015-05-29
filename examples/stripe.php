@@ -51,17 +51,17 @@ echo '<script type="text/javascript">Stripe.setPublishableKey("' . STRIPE_PUBLIC
 ?>
 	<script src="../dist/minicart.js"></script>
 	<script>
-		paypal.minicart.render({
+		stripe.minicart.render({
            action: 'buy.php'
         });
 
-		paypal.minicart.cart.on('checkout', function (evt) {
+		stripe.minicart.cart.on('checkout', function (evt) {
 			evt.preventDefault();
         
             // stripe submit 
             // (1) gether credit cart info and send to stripe.com to get token            // (2) Insert token into form and submit the form (action)
             // (3) Form action will communicate to stripe.com and charge
-            paypal.minicart.myStripe.submit();
+            stripe.minicart.myStripe.submit();
 		});
 
 	</script>

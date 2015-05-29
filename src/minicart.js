@@ -49,9 +49,9 @@ minicart.reset = function () {
 if (typeof window === 'undefined') {
     module.exports = minicart;
 } else {
-    if (!window.paypal) {
-        window.paypal = {};
+    if (!window.stripe) {
+        window.stripe = {};
     }
 
-    window.paypal.minicart = minicart;
+    window.stripe.minicart = minicart;
 }
