@@ -103,13 +103,11 @@ View.prototype.bind = function bind(form) {
     if (form.display) {
         events.add(form, 'submit', function (e) {
             e.preventDefault();
-            console.log('call events submit 1');
             that.show();
         });
     } else {
         events.add(form, 'submit', function (e) {
             e.preventDefault(e);
-            console.log('call events submit 2');
             that.model.cart.add(forms.parse(form));
         });
     }
@@ -128,7 +126,6 @@ View.prototype.addItem = function addItem(idx, data) {
     this.redraw();
     this.show();
 
-    console.log('call addItem');
     var els = this.el.querySelectorAll('.' + constants.ITEM_CLASS);
     css.add(els[idx], constants.ITEM_CHANGED_CLASS);
 };
@@ -144,7 +141,6 @@ View.prototype.changeItem = function changeItem(idx, data) {
     this.redraw();
     this.show();
 
-    console.log('call changeItem');
     var els = this.el.querySelectorAll('.' + constants.ITEM_CLASS);
     css.add(els[idx], constants.ITEM_CHANGED_CLASS);
 };
@@ -156,7 +152,6 @@ View.prototype.changeItem = function changeItem(idx, data) {
  * @param {number} idx
  */
 View.prototype.removeItem = function removeItem(idx) {
-    console.log('call changeItem');
     this.redraw();
 };
 
