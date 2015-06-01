@@ -1,8 +1,11 @@
 # Minicart.js
 
-[![Build Status](https://travis-ci.org/jeffharrell/minicart.png?branch=master)](https://travis-ci.org/jeffharrell/minicart)
+The goal of this project is to convert from paypal to stripe payment by integrating Larry Ullman's stripe blog sample.
 
-The minicart is a great way to improve your PayPal shopping cart integration. One simple change and your users will be able to manage their shopping cart directly from your website. Additional APIs provide you the power to customize the behavior to your needs.
+1. http://minicartjs.com/ 
+2. http://www.larryullman.com/series/processing-payments-with-stripe/
+
+The minicart is a great way to improve your Stripe shopping cart integration. One simple change and your users will be able to manage their shopping cart directly from your website. Additional APIs provide you the power to customize the behavior to your needs.
 
 
 1. [Basic Setup](#basic-setup)
@@ -16,23 +19,12 @@ The minicart is a great way to improve your PayPal shopping cart integration. On
 
 ## Basic Setup
 
-1. Create a PayPal [Add to Cart Button](https://www.paypal.com/cgi-bin/webscr?cmd=p/xcl/web-accept-to-sc-button-outside)
-2. Include the following snippet into your HTML before the closing &lt;/body&gt; tag:
+Currently, there is only one sample program on Apache, PHP environment.
 
-    ```html
-    <script src="//cdnjs.cloudflare.com/ajax/libs/minicart/3.0.5/minicart.min.js"></script>
-    <script>
-        paypal.minicart.render();
-    </script>
-    ```
-
-3. On your return page include:
-
-    ```html
-    <script>
-        paypal.minicart.reset();
-    </script>
-    ```
+1. Goto to https://www.stripe.com and sign up.
+2. Find your public and private keys.
+3. Clone the source and update keys in examples/config.inc.php.
+4. Visit example/stripe.php
 
 It's that simple! Now the minicart will appear when a user views or adds a product to their cart.
 
@@ -45,71 +37,70 @@ The minicart has a JavaScript API for advanced users to customize the behavior.
 
 ### General
 
-`paypal.minicart.render(config)`
+`stripe.minicart.render(config)`
 Renders the minicart to the page. Config is optional and can have the following properties:
 
  * `parent` - HTMLElement the minicart should render to.
  * `target` - HTML target property for the checkout form.
- * `action` - PayPal URL (if you are accessing sandbox or another version of the PayPal website).
  * `template` - HTML template for rendering. See [customization](#customization) for details.
  * `styles` - CSS styles for rendering. See [customization](#customization) for details.
  * `strings` - An object of text strings: `button`, `buttonAlt`, `subtotal` and `discount`.
 
-`paypal.minicart.reset()`
+`stripe.minicart.reset()`
 Resets the minicart back to its default state.
 
 
 ### View
 
-`paypal.minicart.view.show()`
+`stripe.minicart.view.show()`
 Triggers the minicart to show by adding a "minicart-showing" CSS class to the document.
 
-`paypal.minicart.view.hide()`
+`stripe.minicart.view.hide()`
 Triggers the minicart to hide by removing the "minicart-showing" CSS class on the document.
 
-`paypal.minicart.view.toggle()`
+`stripe.minicart.view.toggle()`
 Toggles the visibility of the minicart.
 
-`paypal.minicart.view.bind(form)`
+`stripe.minicart.view.bind(form)`
 Binds an HTMLFormElement's submit event to the minicart. Useful for forms which may have been added to the page after the initial load.
 
 
 ### Cart
 
-`paypal.minicart.cart.add(data)`
+`stripe.minicart.cart.add(data)`
 Adds an item to the cart. Fires the *add* event. Example data object:
 
     { "business": "user@example.com", "item_name": "Product", "amount": 5.00, "currency_code": "USD" }
 
-`paypal.minicart.cart.remove(idx)`
+`stripe.minicart.cart.remove(idx)`
 Removes an item from the cart by index. Fires the *remove* event.
 
-`paypal.minicart.cart.items(idx)`
+`stripe.minicart.cart.items(idx)`
 Returns an array of items from the cart. If an index is passed then only that item is returned.
 
-`paypal.minicart.cart.settings(key)`
+`stripe.minicart.cart.settings(key)`
 Returns an object of global cart settings. If a key is passed then only that value is returned.
 
-`paypal.minicart.cart.discount(config)`
+`stripe.minicart.cart.discount(config)`
 Calculates the cart discount amount. *config* can be used for formatting.
 
-`paypal.minicart.cart.subtotal(config)`
+`stripe.minicart.cart.subtotal(config)`
 Calculates the cart total minus discounts. *config* can be used for formatting.
 
-`paypal.minicart.cart.total(config)`
+`stripe.minicart.cart.total(config)`
 Calculates the cart total. *config* can be used for formatting.
 
-`paypal.minicart.cart.destroy()`
+`stripe.minicart.cart.destroy()`
 Destroys the cart data and resets it back to the default state. Fires the *destroy* event.
 
-`paypal.minicart.cart.on(event, fn, scope)`
+`stripe.minicart.cart.on(event, fn, scope)`
 Subscribe to cart events. Events include:
  * `add` - Fired when an item is added. *function (idx, product, isExisting)*
  * `remove` - Fired when an item is removed. *function (idx, product)*
  * `checkout` - Fired on checkout. *function (evt)*
  * `destroy` - Fired when the cart is destroyed. *function ()*
 
-`paypal.minicart.cart.off(event, fn)`
+`stripe.minicart.cart.off(event, fn)`
 Unsubscribe from cart events.
 
 
@@ -170,7 +161,7 @@ The HTML template and CSS can be overridden using the *config* object.
 ```js
 var myTemplate = "<div><%= config.strings.subtotal %> <%= cart.total({ format: true, showCode: true }) %></div>";
 
-paypal.minicart.render({
+stripe.minicart.render({
     template: myTemplate
 });
 ```
@@ -199,7 +190,7 @@ If you're new to the building a theme it's a good idea to copy the one at `src/t
 Localization is supported using the *strings* object.
 
 ```js
-paypal.minicart.render({
+stripe.minicart.render({
     strings: {
         button: "Caisse",
         buttonAlt: "Total:",
@@ -230,16 +221,8 @@ Please submit the issue on the [issue tracker](https://github.com/jeffharrell/Mi
 ### The minicart isn't appearing the same as on this page. Why?
 This can occur if your page is being rendered in [quirks mode](http://en.wikipedia.org/wiki/Quirks_mode). You can check for this issue, validate and correct your HTML using the [W3C Markup Validator](http://validator.w3.org/).
 
-### I installed the minicart, but my website still redirects to PayPal. Why?
-The minicart doesn't work with PayPal's hosted buttons. To fix your buttons go to paypal.com and:
 
-1. Create a button on PayPal's website and uncheck the *Save button at PayPal* checkbox under *Step 2: Track inventory, profit & loss*.
-2. Once you've created the button click *Remove code protection* before copying your button code.
 
-If this isn't the case then you may have a JavaScript error on the page. Open the browser debugger console and see if there are any errors.
-
-### The minicart isn't emptying after a transaction is completed. Why?
-Your buttons need to contain a *return* parameter with a URL for PayPal to redirect back to on completion. On this page make sure to call `paypal.minicart.reset();`.
 
 ### Does the minicart work with frames?
 Frames are not officially supported. You may be able to get some mileage with the *target* configuration setting.
