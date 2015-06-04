@@ -2132,23 +2132,28 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
             data: frm.serialize(),
             success: function (data) {
                 // close the popup
-                $("#minicart-close").click();
+                //$("#minicart-close").click();
                 // extract content between tag <myresult></myresult>
                 // from ajax response and put into current page's
                 // <div id="result> </div>
                 //var text = data.match(/<myresult[^>]*>([^<]+)<\/myresult>/)[1];
                 var startTag = data.indexOf('<myresult>');
                 var endTag = data.indexOf('</myresult>');
-                var text = data.substring(startTag + 10, endTag - 11);
+                var text = data.substring(startTag + 10, endTag);
                 //$("#result").html(text);
-                $(stripe.minicart.config.result).html(text);
-                stripe.minicart.reset();
+                //$(stripe.minicart.config.result).html(text);
+		$('#payment-message').html(text + '<br /><span id="paymentDone" class="btn btn-info" style="text-align:center;">Done</span>').addClass('alert alert-danger');
+		$('#paymentDone').click( function() {
+                   stripe.minicart.reset();
+		});
+		//$('#payment-message').html(text).addClass('alert alert-danger');
+                //stripe.minicart.reset();
             }
         });
 
         ev.preventDefault();
       });
-
+   
       frm.submit();
    }
 
@@ -2995,13 +3000,11 @@ View.prototype.bind = function bind(form) {
     if (form.display) {
         events.add(form, 'submit', function (e) {
             e.preventDefault();
-            console.log('call events submit 1');
             that.show();
         });
     } else {
         events.add(form, 'submit', function (e) {
             e.preventDefault(e);
-            console.log('call events submit 2');
             that.model.cart.add(forms.parse(form));
         });
     }
@@ -3020,7 +3023,6 @@ View.prototype.addItem = function addItem(idx, data) {
     this.redraw();
     this.show();
 
-    console.log('call addItem');
     var els = this.el.querySelectorAll('.' + constants.ITEM_CLASS);
     css.add(els[idx], constants.ITEM_CHANGED_CLASS);
 };
@@ -3036,7 +3038,6 @@ View.prototype.changeItem = function changeItem(idx, data) {
     this.redraw();
     this.show();
 
-    console.log('call changeItem');
     var els = this.el.querySelectorAll('.' + constants.ITEM_CLASS);
     css.add(els[idx], constants.ITEM_CHANGED_CLASS);
 };
@@ -3048,7 +3049,6 @@ View.prototype.changeItem = function changeItem(idx, data) {
  * @param {number} idx
  */
 View.prototype.removeItem = function removeItem(idx) {
-    console.log('call changeItem');
     this.redraw();
 };
 

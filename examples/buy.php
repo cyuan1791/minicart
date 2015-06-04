@@ -20,7 +20,7 @@ session_start();
 <myresult>
 <?php
 
-var_dump($_POST);
+#var_dump($_POST);
 // Check for a form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// Check that it was paid:
 			if ($charge->paid == true) {
 
-                echo "Payment process successfully.";
+                echo "Payment process was successfully.  <br /> You can close the popup.";
 				// Store the order in the database.
 				// Send the email.
 				// Celebrate!

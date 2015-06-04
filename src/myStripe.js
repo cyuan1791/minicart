@@ -103,23 +103,28 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
             data: frm.serialize(),
             success: function (data) {
                 // close the popup
-                $("#minicart-close").click();
+                //$("#minicart-close").click();
                 // extract content between tag <myresult></myresult>
                 // from ajax response and put into current page's
                 // <div id="result> </div>
                 //var text = data.match(/<myresult[^>]*>([^<]+)<\/myresult>/)[1];
                 var startTag = data.indexOf('<myresult>');
                 var endTag = data.indexOf('</myresult>');
-                var text = data.substring(startTag + 10, endTag - 11);
+                var text = data.substring(startTag + 10, endTag);
                 //$("#result").html(text);
-                $(stripe.minicart.config.result).html(text);
-                stripe.minicart.reset();
+                //$(stripe.minicart.config.result).html(text);
+		$('#payment-message').html(text + '<br /><span id="paymentDone" class="btn btn-info" style="text-align:center;">Done</span>').addClass('alert alert-danger');
+		$('#paymentDone').click( function() {
+                   stripe.minicart.reset();
+		});
+		//$('#payment-message').html(text).addClass('alert alert-danger');
+                //stripe.minicart.reset();
             }
         });
 
         ev.preventDefault();
       });
-
+   
       frm.submit();
    }
 
