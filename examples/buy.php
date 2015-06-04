@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// Check that it was paid:
 			if ($charge->paid == true) {
 
-                echo "Payment process was successfully.  <br /> You can close the popup.";
+                echo "Payment process was successfully.";
 				// Store the order in the database.
 				// Send the email.
 				// Celebrate!
