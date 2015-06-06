@@ -4,6 +4,7 @@ require('config.inc.php');
 session_start();
 
 // to allow https ajax request
+// Need to update ajax request in Var['Multi-GPostInc'] first and then uncommet out header("Access..
 //On the HTTPS page (that you are requesting from the HTTP page) set the header:
 //Access-Control-Allow-Origin: http://www.example.com
 //You can do this in PHP with:
