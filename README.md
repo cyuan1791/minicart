@@ -17,7 +17,7 @@ The minicart is a great way to improve your Stripe shopping cart integration. On
 
 
 
-## Basic Setup
+## Sample Setup
 
 Currently, there is only one sample program on Apache, PHP environment.
 
@@ -139,15 +139,6 @@ Subscribe to cart events. Events include:
 Unsubscribe from product events.
 
 
-## API Examples
-
-Examples of how you can use the API:
-
-* [Preventing checkout until terms are accepted](https://github.com/jeffharrell/minicart/blob/master/examples/terms.html)
-* [Requiring a minimum quantity to checkout](https://github.com/jeffharrell/minicart/blob/master/examples/minquantity.html)
-* [Only allowing a fixed quantity per item](https://github.com/jeffharrell/minicart/blob/master/examples/fixedquantity.html)
-* [Ensuring an option is selected](https://github.com/jeffharrell/minicart/blob/master/examples/notempty.html)
-
 
 ## Customization
 
@@ -226,6 +217,3 @@ This can occur if your page is being rendered in [quirks mode](http://en.wikiped
 
 ### Does the minicart work with frames?
 Frames are not officially supported. You may be able to get some mileage with the *target* configuration setting.
-
-### Are previous versions of the minicart available?
-All previous versions are [tagged on Github](https://github.com/jeffharrell/MiniCart/tags).
