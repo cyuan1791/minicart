@@ -24,7 +24,8 @@ myStripe.prototype.submit = function submit () {
 
 		this.reportMessage('Payment processing. Please wait!');
 		// Get the values:
-		var ccNum = $('.card-number').val(), cvcNum = $('.card-cvc').val(), expMonth = $('.card-expiry-month').val(), expYear = $('.card-expiry-year').val();
+		//var ccNum = $('.card-number').val(), cvcNum = $('.card-cvc').val(), expMonth = $('.card-expiry-month').val(), expYear = $('.card-expiry-year').val();
+		var ccNum = $('.card-number').val().replace(/-|\s/g,""), cvcNum = $('.card-cvc').val().replace(/-|\s/g,""), expMonth = $('.card-expiry-month').val().replace(/-|\s/g,""), expYear = $('.card-expiry-year').val().replace(/-|\s/g,"");
 
 		// Validate the number:
 		if (!Stripe.card.validateCardNumber(ccNum)) {
@@ -45,15 +46,15 @@ myStripe.prototype.submit = function submit () {
 		}
         if ($('#firstName').val() === "") {
 			error = true;
-			this.reportMessage('Please click "Enter Contact Info" to fill in First Name');
+			this.reportMessage('Please enter First Name');
 		}
         if ($('#lastName').val() === "") {
 			error = true;
-			this.reportMessage('Please click "Enter Contact Info" to fill in Last Name');
+			this.reportMessage('Please enter Last Name');
 		}
         if ($('#email').val() === "") {
 			error = true;
-			this.reportMessage('Please click "Enter Contact Info" to fill in Email');
+			this.reportMessage('Please enter Email');
 		}
 
 		// Validate other form elements, if needed!

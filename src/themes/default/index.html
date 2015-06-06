@@ -80,45 +80,20 @@ var totalFormat = { format: true, showCode: true };
     <div class="panel-heading" role="tab" id="headingTwo">
       <h4 class="panel-title">
         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-         Enter Contact Info
+	<span class="btn btn-danger" style="margin:0 100px;">Payment</span>
         </a>
       </h4>
     </div>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
-         <table class="table table-condensed">
-         <tr> <td> First Name </td><td><input type="text" id="firstName" name="firstName" value="" /></td></tr>
-         <tr> <td> Last Name </td><td><input type="text" id="lastName" name="lastName" value="" /></td></tr>
-         <tr> <td> Email </td><td><input type="text" id="email" name="Email" value="" /></td></tr>
-         </table>
-    
-      </div>
-    </div>
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Payment
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
 <table class="table table-condensed">
+         <tr> <td><label>First Name</label></td><td><input type="text" id="firstName" name="firstName" value="" /></td></tr>
+         <tr> <td><label>Last Name</label></td><td><input type="text" id="lastName" name="lastName" value="" /></td></tr>
+         <tr> <td><label>Email</label> </td><td><input type="text" id="email" name="Email" value="" /></td></tr>
 <tr> <td colspan="2">
-</td></tr>
-<tr> <td colspan="2">
-        You can pay using: Mastercard, Visa, JCB, Discover, American Express, and Diners Club.
-</td></tr>
-<tr> <td colspan="2">
-        <label>Card Number</label>
-        <input type="text" size="17" autocomplete="off" class="card-number input-medium" value="4242424242424242">
+        <label>CardNumber</label>
+        <input type="text" size="18" autocomplete="off" class="card-number input-medium" value="4242424242424242">
       <label>CVC</label> <input type="text" size="3" autocomplete="off" class="card-cvc input-mini" value="123">
-</td></tr>
-<tr> <td colspan="2">
-        <span class="help-block">Enter the number without spaces or hyphens.</span>
 </td></tr>
 <tr> <td colspan="2">
         <label>Expiration (MM/YYYY)</label>
