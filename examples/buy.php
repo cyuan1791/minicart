@@ -3,6 +3,13 @@ require('config.inc.php');
 // Uses sessions to test for duplicate submissions:
 session_start();
 
+// to allow https ajax request
+//On the HTTPS page (that you are requesting from the HTTP page) set the header:
+//Access-Control-Allow-Origin: http://www.example.com
+//You can do this in PHP with:
+//
+//header("Access-Control-Allow-Origin: _HOST_");
+
 ?><!DOCTYPE html>
 <!doctype html>
 <html>
