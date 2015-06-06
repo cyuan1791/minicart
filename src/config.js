@@ -20,8 +20,6 @@ var defaults = module.exports = {
 
     styles: '$STYLES$',
 
-    result: '#result',
-
     strings: {
         button: 'Check Out',
         subtotal: 'Subtotal:',
