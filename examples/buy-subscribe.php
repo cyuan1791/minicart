@@ -22,9 +22,11 @@ session_start();
 </head>
 <body>
 
+<?php
 // myresult are special tag used by myStripe.js to parse out result
 // this file is for ajax request to communicate to stripe server to 
 // process payment
+?>
 <myresult>
 <?php
 
@@ -52,25 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$errors['token'] = 'The order cannot be processed. Please make sure you have JavaScript enabled and try again.';
 	}
 
-	// Set the order amount somehow:
-	$amount = 0; 
-	if (isset($_POST['subTotal'])) {
-	    $amount = intval($_POST['subTotal']) * 100; 
-    }
-	$currency_code = 'USD'; 
-	if (isset($_POST['currency_code'])) {
-	    $currency_code = $_POST['currency_code']; 
-    }
-
-	$email = ''; 
-	if (isset($_POST['business'])) {
-	    $email = $_POST['business']; 
-    }
-
-	// Validate other form data!
-
 	// If no errors, process the order:
 	if (empty($errors)) {
+	        var_dump($_POST);
 
 		// create the charge on Stripe's servers - this will charge the user's card
 		try {
@@ -84,25 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			\Stripe\Stripe::setApiKey(STRIPE_PRIVATE_KEY);
 
 			// Charge the order:
-			$charge = \Stripe\Charge::create(array(
-				"amount" => $amount, // amount in cents, again
-				"currency" => $currency_code,
+			$charge = \Stripe\Customer::create(array(
 				"source" => $token,
-				"description" => $email
+				"plan" => $_POST['stripePlan'],
+				"email" => $_POST['stripeEmail']
 				)
 			);
 
-			// Check that it was paid:
-			if ($charge->paid == true) {
 
-                echo "Payment process was successfully.";
-				// Store the order in the database.
-				// Send the email.
-				// Celebrate!
-
-			} else { // Charge was not paid!
-				echo '<div class="alert alert-error"><h4>Payment System Error!</h4>Your payment could NOT be processed (i.e., you have not been charged) because the payment system rejected the transaction. You can try again or use another card.</div>';
-			}
+                        echo "Payment process was successfully.";
 
 		} catch (\Stripe\Error\Card $e) {
 		    // Card was declined.
@@ -110,16 +86,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$err = $e_json['error'];
 			$errors['stripe'] = $err['message'];
 		} catch (\Stripe\Error\ApiConnection $e) {
-		     echo 'Network problem, perhaps try again.';
+		     echo 'Network problem';
 		    // Network problem, perhaps try again.
 		} catch (\Stripe\Error\InvalidRequest $e) {
-		     echo 'Invalid Request!';
+		     //var_dump($e);
+		     echo 'Invalid Request';
+		     echo $e.message;
 		    // You screwed up in your programming. Shouldn't happen!
 		} catch (\Stripe\Error\Api $e) {
-		     echo 'Stripe server down!';
+		     echo 'Stripe server is down';
 		    // Stripe's servers are down!
 		} catch (\Stripe\Error\Base $e) {
-		     echo 'Stripe server problem!';
+		     echo 'Unknown stipe error';
 		    // Something else that's not the customer's fault.
 		}
 

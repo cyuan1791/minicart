@@ -8,5 +8,5 @@
 // This page is intended to be stored in a protected "includes" directory.
 
 // Define useful constants:
-define('STRIPE_PRIVATE_KEY', 'sk_test_n5pgh9ATJc5RoHBC4sqLVpHk');
-define('STRIPE_PUBLIC_KEY', 'pk_test_IKNI1lCXJHZ80gUHuwH666K9');
+define('STRIPE_PRIVATE_KEY', 'sk_test_YAZVvigyGsTPq3Pan72jpYbN');
+define('STRIPE_PUBLIC_KEY', 'pk_test_5cQYArKzzFMqm4LZbptu9EPe');
