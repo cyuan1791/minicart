@@ -28,7 +28,8 @@ Currently, there is only one sample program on Apache, PHP environment.
 
 It's that simple! Now the minicart will appear when a user views or adds a product to their cart.
 
-
+## Demo
+   See http://s_stripe.webcmsnow.com/
 
 ## Advanced API
 
