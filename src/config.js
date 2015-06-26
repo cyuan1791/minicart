@@ -20,7 +20,7 @@ var defaults = module.exports = {
 
     styles: '$STYLES$',
 
-    userInfoRequired: 1,
+    userInfoRequired: 0,
 
     strings: {
         button: 'Check Out',
