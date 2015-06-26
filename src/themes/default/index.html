@@ -87,9 +87,11 @@ var totalFormat = { format: true, showCode: true };
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
 <table class="table table-condensed">
+	<% if (config.userInfoRequired) { %>
          <tr> <td><label>First Name</label></td><td><input type="text" id="firstName" name="firstName" value="" /></td></tr>
          <tr> <td><label>Last Name</label></td><td><input type="text" id="lastName" name="lastName" value="" /></td></tr>
          <tr> <td><label>Email</label> </td><td><input type="text" id="email" name="Email" value="" /></td></tr>
+	<% } %>
 <tr> <td colspan="2">
         <label>CardNumber</label>
         <input type="text" size="18" autocomplete="off" class="card-number input-medium" value="4242424242424242">

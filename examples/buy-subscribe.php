@@ -56,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// If no errors, process the order:
 	if (empty($errors)) {
-	        var_dump($_POST);
 
 		// create the charge on Stripe's servers - this will charge the user's card
 		try {

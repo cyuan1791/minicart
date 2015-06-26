@@ -8,6 +8,8 @@
 // This function is just used to display error messages on the page.
 // Assumes there's an element with an ID of "payment-errors".
 
+var config = require('./config')
+
 function  myStripe() {}
 
 myStripe.prototype.reportMessage = function reportMessage(msg) {
@@ -44,17 +46,19 @@ myStripe.prototype.submit = function submit () {
 			error = true;
 			this.reportMessage('The expiration date appears to be invalid.');
 		}
-        if ($('#firstName').val() === "") {
-			error = true;
-			this.reportMessage('Please enter First Name');
-		}
-        if ($('#lastName').val() === "") {
-			error = true;
-			this.reportMessage('Please enter Last Name');
-		}
-        if ($('#email').val() === "") {
-			error = true;
-			this.reportMessage('Please enter Email');
+		if (config.userInfoRequired) {
+        		if ($('#firstName').val() === "") {
+				error = true;
+				this.reportMessage('Please enter First Name');
+			}
+        		if ($('#lastName').val() === "") {
+				error = true;
+				this.reportMessage('Please enter Last Name');
+			}
+        		if ($('#email').val() === "") {
+				error = true;
+				this.reportMessage('Please enter Email');
+			}
 		}
 
 		// Validate other form elements, if needed!
