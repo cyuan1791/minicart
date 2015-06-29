@@ -133,7 +133,7 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
                 var text = data.substring(startTag + 10, endTag);
                 //$("#result").html(text);
                 //$(stripe.minicart.config.result).html(text);
-		$('#payment-message').html(text + '<br /><span id="paymentDone" class="btn btn-info" style="text-align:center;">Done</span>').addClass('alert alert-danger');
+		$('#payment-message').html(text + '<br /><span id="paymentDone" class="btn btn-info" style="text-align:center;">Done(Click Me)</span>').addClass('alert alert-danger');
 		$('#paymentDone').click( function() {
                    stripe.minicart.reset();
 		});
