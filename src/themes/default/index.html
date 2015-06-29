@@ -120,7 +120,7 @@ var totalFormat = { format: true, showCode: true };
                 <%= config.strings.subtotal %> <%= cart.total(totalFormat) %>
             </h5>
             </td> <td>
-            <button class="btn btn-info" type="submit" data-minicart-alt="<%= config.strings.buttonAlt %>"><%- config.strings.button %></button>
+            <button class="btn btn-info" type="submit" id="submitBtn" data-minicart-alt="<%= config.strings.buttonAlt %>"><%- config.strings.button %></button>
             </div>
             </td></table>
         <% } else { %>

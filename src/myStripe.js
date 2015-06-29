@@ -80,6 +80,7 @@ myStripe.prototype.submit = function submit () {
 		// Check for errors:
 		if (!error) {
 
+		$('#submitBtn').attr("disabled", "disabled");
             // remove form button
 	        $('#payment-processing').text('');
 			// Get the Stripe token:
