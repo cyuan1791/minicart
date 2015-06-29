@@ -53,7 +53,8 @@ echo '<script type="text/javascript">Stripe.setPublishableKey("' . STRIPE_PUBLIC
 	<script>
 		stripe.minicart.render({
            action: 'buy.php',
-	   userInfoRequired: 0
+	   userInfoRequired: 1,
+	   userAddressRequired: 1
         });
 
 		stripe.minicart.cart.on('checkout', function (evt) {

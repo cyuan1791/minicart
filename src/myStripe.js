@@ -47,17 +47,31 @@ myStripe.prototype.submit = function submit () {
 			this.reportMessage('The expiration date appears to be invalid.');
 		}
 		if (config.userInfoRequired) {
-        		if ($('#firstName').val() === "") {
+        		if ($('#name').val() === "") {
 				error = true;
-				this.reportMessage('Please enter First Name');
-			}
-        		if ($('#lastName').val() === "") {
-				error = true;
-				this.reportMessage('Please enter Last Name');
+				this.reportMessage('Please enter Name');
 			}
         		if ($('#email').val() === "") {
 				error = true;
 				this.reportMessage('Please enter Email');
+			}
+		}
+		if (config.userAddressRequired) {
+        		if ($('#address_zip').val() === "") {
+				error = true;
+				this.reportMessage('Please enter zip');
+			}
+        		if ($('#address_state').val() === "") {
+				error = true;
+				this.reportMessage('Please enter state');
+			}
+        		if ($('#address_city').val() === "") {
+				error = true;
+				this.reportMessage('Please enter city');
+			}
+        		if ($('#address_line1').val() === "") {
+				error = true;
+				this.reportMessage('Please enter Address');
 			}
 		}
 

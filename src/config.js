@@ -22,6 +22,8 @@ var defaults = module.exports = {
 
     userInfoRequired: 0,
 
+    userAddressRequired: 0,
+
     strings: {
         button: 'Check Out',
         subtotal: 'Subtotal:',

@@ -56,16 +56,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$amount = 0; 
 	if (isset($_POST['subTotal'])) {
 	    $amount = intval($_POST['subTotal']) * 100; 
-    }
+        }
 	$currency_code = 'USD'; 
 	if (isset($_POST['currency_code'])) {
 	    $currency_code = $_POST['currency_code']; 
-    }
+        }
 
-	$email = ''; 
-	if (isset($_POST['business'])) {
-	    $email = $_POST['business']; 
-    }
+	$desc = '';
+	if (isset($_POST['Email'])) {
+	   $desc = $_POST['Email'];
+	}
+	if (isset($_POST['name'])) {
+	   $desc .= '| '. $_POST['name'] ; 
+        }
+	if (isset($_POST['address_line1'])) {
+	   $desc .= '| '.$_POST['address_line1']; 
+	   $desc .= ' '.$_POST['address_city']; 
+	   $desc .= ', '.$_POST['address_state']; 
+	   $desc .= ' '.$_POST['address_zip']; 
+	   $desc .= ', '.$_POST['address_country']; 
+	}
 
 	// Validate other form data!
 
@@ -88,8 +98,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				"amount" => $amount, // amount in cents, again
 				"currency" => $currency_code,
 				"source" => $token,
-				"description" => $email
-				)
+				"description" => $desc,
+				//"address_line1" => $address_line1,
+				//"address_city" => $address_city,
+				//"address_state" => $address_state,
+				//"address_zip" => $address_zip,
+				//"address_country" $address_country
+			    )
 			);
 
 			// Check that it was paid:

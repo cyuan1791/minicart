@@ -11,8 +11,8 @@ var totalFormat = { format: true, showCode: true };
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-	<span class="text-info" style="margin:0 60px;">Shopping Cart</span>
+        <a data-toggle="collapse" class="btn btn-success" style="color: white;"  data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+	Shopping Cart
         </a>
       </h4>
     </div>
@@ -80,7 +80,7 @@ var totalFormat = { format: true, showCode: true };
     <div class="panel-heading" role="tab" id="headingTwo">
       <h4 class="panel-title">
         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-	<span class="btn btn-danger" style="margin:0 100px;">Payment</span>
+	<span class="btn btn-danger">Payment</span>
         </a>
       </h4>
     </div>
@@ -88,9 +88,16 @@ var totalFormat = { format: true, showCode: true };
       <div class="panel-body">
 <table class="table table-condensed">
 	<% if (config.userInfoRequired) { %>
-         <tr> <td><label>First Name</label></td><td><input type="text" id="firstName" name="firstName" value="" /></td></tr>
-         <tr> <td><label>Last Name</label></td><td><input type="text" id="lastName" name="lastName" value="" /></td></tr>
-         <tr> <td><label>Email</label> </td><td><input type="text" id="email" name="Email" value="" /></td></tr>
+         <tr> <td><label>Email</label> </td><td><input type="text" id="email" name="Email" size=32 value="" /></td></tr>
+         <tr> <td><label>Name</label></td><td><input type="text" id="name" name="name" size=32 value="" /></td></tr>
+	<% } %>
+	<% if (config.userAddressRequired) { %>
+         <tr> <td><label>Address </label></td><td><input type="text" id="address_line1" name="address_line1" size=32 value="" /></td></tr>
+         <tr> <td><label>City </label></td><td><input type="text" id="address_city" name="address_city" value="" />
+         &nbsp;&nbsp;&nbsp;<label>State </label>&nbsp;<input type="text" id="address_state" name="address_state" size="2" value="" /> </td></tr>
+         <tr> <td><label>Zip </label></td><td><input type="text" id="address_zip" name="address_zip" size="5" value="" />
+         &nbsp; &nbsp; &nbsp; &nbsp;
+         &nbsp;<label>Country </label>&nbsp;<input type="text" name="address_country" size="11" value="" /></td></tr>
 	<% } %>
 <tr> <td colspan="2">
         <label>CardNumber</label>
@@ -98,9 +105,9 @@ var totalFormat = { format: true, showCode: true };
       <label>CVC</label> <input type="text" size="3" autocomplete="off" class="card-cvc input-mini" value="">
 </td></tr>
 <tr> <td colspan="2">
-        <label>Expiration (MM/YYYY)</label>
+        <label>Expiration (MM&nbsp;/&nbsp;YYYY)&nbsp;</label>
         <input type="text" size="2" class="card-expiry-month input-mini" value="">
-        <span> / </span>
+        <span>&nbsp;/&nbsp;</span>
         <input type="text" size="4" class="card-expiry-year input-mini" value="">
 </td></tr>
 <tr> <td colspan="2">

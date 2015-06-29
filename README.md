@@ -46,7 +46,8 @@ Renders the minicart to the page. Config is optional and can have the following 
  * `template` - HTML template for rendering. See [customization](#customization) for details.
  * `styles` - CSS styles for rendering. See [customization](#customization) for details.
  * `strings` - An object of text strings: `button`, `buttonAlt`, `subtotal` and `discount`.
- * `userInfoRequired` - When set, user will require to enter lastname, firstname and email during checkout.
+ * `userInfoRequired` - When set, user will require to enter name and email during checkout.
+ * `userAddrssRequired` - When set, user will require to enter address during checkout.
 
 `stripe.minicart.reset()`
 Resets the minicart back to its default state.
