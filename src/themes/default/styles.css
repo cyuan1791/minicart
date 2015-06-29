@@ -38,7 +38,7 @@
 
 #PPMiniCart form {
     position: relative;
-    width: 330px;
+    width: 310px;
     max-height: 500px;
     margin-left: -200px;
     padding: 0px 0px 40px;
@@ -59,7 +59,7 @@
 #PPMiniCart ul {
     clear: both;
     float: left;
-    width: 294px;
+    width: 274px;
     margin: 0px 0 10px;
     padding: 5px;
     list-style-type: none;
