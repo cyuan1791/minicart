@@ -2083,10 +2083,11 @@ myStripe.prototype.submit = function submit () {
 		//var ccNum = $('.card-number').val(), cvcNum = $('.card-cvc').val(), expMonth = $('.card-expiry-month').val(), expYear = $('.card-expiry-year').val();
 		var ccNum = $('.card-number').val().replace(/-|\s/g,""), cvcNum = $('.card-cvc').val().replace(/-|\s/g,""), expMonth = $('.card-expiry-month').val().replace(/-|\s/g,""), expYear = $('.card-expiry-year').val().replace(/-|\s/g,"");
 
-		// Validate the number:
-		if (!Stripe.card.validateCardNumber(ccNum)) {
+
+		// Validate the expiration:
+		if (!Stripe.card.validateExpiry(expMonth, expYear)) {
 			error = true;
-			this.reportMessage('The credit card number appears to be invalid.');
+			this.reportMessage('The expiration date appears to be invalid.');
 		}
 
 		// Validate the CVC:
@@ -2094,22 +2095,13 @@ myStripe.prototype.submit = function submit () {
 			error = true;
 			this.reportMessage('The CVC number appears to be invalid.');
 		}
-
-		// Validate the expiration:
-		if (!Stripe.card.validateExpiry(expMonth, expYear)) {
+		// Validate the number:
+		if (!Stripe.card.validateCardNumber(ccNum)) {
 			error = true;
-			this.reportMessage('The expiration date appears to be invalid.');
+			this.reportMessage('The credit card number appears to be invalid.');
 		}
-		if (config.userInfoRequired) {
-        		if ($('#name').val() === "") {
-				error = true;
-				this.reportMessage('Please enter Name');
-			}
-        		if ($('#email').val() === "") {
-				error = true;
-				this.reportMessage('Please enter Email');
-			}
-		}
+
+
 		if (config.userAddressRequired) {
         		if ($('#address_zip').val() === "") {
 				error = true;
@@ -2126,6 +2118,17 @@ myStripe.prototype.submit = function submit () {
         		if ($('#address_line1').val() === "") {
 				error = true;
 				this.reportMessage('Please enter Address');
+			}
+		}
+
+		if (config.userInfoRequired) {
+        		if ($('#name').val() === "") {
+				error = true;
+				this.reportMessage('Please enter Name');
+			}
+        		if ($('#email').val() === "") {
+				error = true;
+				this.reportMessage('Please enter Email');
 			}
 		}
 
