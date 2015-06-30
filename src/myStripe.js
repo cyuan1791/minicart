@@ -152,14 +152,14 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
 
 myStripe.prototype.myfocus =  function myfocus(e) {
      // use by form input fields onfocusin event
-     // Adjust input field to be 100px from absolute top
+     // Adjust input field to be 150px from absolute top
      // 
      if (this.mobilecheck()) {
 	  // only mobile device need to adjust
           e = e || window.event;
           var top = $('#'+ e.target.id).offset().top;
           var ptop = $('#PPMiniCart').offset().top;
-          var adjust = ptop - top + 100;
+          var adjust = ptop - top + 150;
           $('#PPMiniCart').css('top', adjust  + 'px');
      }
 }
