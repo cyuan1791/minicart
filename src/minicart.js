@@ -55,3 +55,26 @@ if (typeof window === 'undefined') {
 
     window.stripe.minicart = minicart;
 }
+function myfocus(e) {
+          if (window.mobilecheck()) {
+          e = e || window.event;
+          //var target = e.target || e.srcElement;
+          //console.log(target.id);
+          //console.log(e);
+          var top = $('#'+ e.target.id).offset().top;
+          var ptop = $('#PPMiniCart').offset().top;
+          var adjust = ptop - top + 100;
+          //console.log(top);
+          //console.log(ptop);
+          $('#PPMiniCart').css('top', adjust  + 'px');
+
+          //console.log($('#name').offset());
+          //$('#PPMiniCart').css('top','-10px');
+          //console.log(e);
+          //var offset = $(this).offset();
+          //var relativeX = (e.pageX - offset.left);
+          //var relativeY = (e.pageY - offset.top);
+
+          //console.log("X: " + relativeX + "  Y: " + relativeY);
+          }
+}

@@ -88,27 +88,27 @@ var totalFormat = { format: true, showCode: true };
       <div class="panel-body">
 <table class="table table-condensed">
 	<% if (config.userInfoRequired) { %>
-         <tr> <td><label>Email</label> </td><td><input type="text" id="email" name="Email" size=30 value="" /></td></tr>
-         <tr> <td><label>Name</label></td><td><input type="text" id="name" name="name" size=30 value="" /></td></tr>
+         <tr> <td><label>Email</label> </td><td><input type="text" id="email" name="Email" size=30 value="" onfocusin="stripe.minicart.myStripe.myfocus(event);" /></td></tr>
+         <tr> <td><label>Name</label></td><td><input type="text" id="name" name="name" size=30 value="" onfocusin="stripe.minicart.myStripe.myfocus(event);"  /></td></tr>
 	<% } %>
 	<% if (config.userAddressRequired) { %>
-         <tr> <td><label>Addr</label></td><td><input type="text" id="address_line1" name="address_line1" size=30 value="" /></td></tr>
-         <tr> <td><label>City </label></td><td><input type="text" id="address_city" name="address_city" size=18 value="" />
-         &nbsp;&nbsp;&nbsp;<label>State </label>&nbsp;<input type="text" id="address_state" name="address_state" size="2" value="" /> </td></tr>
-         <tr> <td><label>Zip </label></td><td><input type="text" id="address_zip" name="address_zip" size="5" value="" />
+         <tr> <td><label>Addr</label></td><td><input type="text" id="address_line1" name="address_line1" onfocusin="stripe.minicart.myStripe.myfocus(event);" size=30 value="" /></td></tr>
+         <tr> <td><label>City </label></td><td><input type="text" id="address_city" name="address_city" onfocusin="stripe.minicart.myStripe.myfocus(event);" size=18 value="" />
+         &nbsp;&nbsp;&nbsp;<label>State </label>&nbsp;<input type="text" id="address_state" onfocusin="stripe.minicart.myStripe.myfocus(event);" name="address_state" size="2" value="" /> </td></tr>
+         <tr> <td><label>Zip </label></td><td><input type="text" id="address_zip" onfocusin="stripe.minicart.myStripe.myfocus(event);" name="address_zip" size="5" value="" />
          &nbsp; &nbsp; &nbsp;
-         &nbsp;<label>Country </label>&nbsp;<input type="text" name="address_country" size="11" value="" /></td></tr>
+         &nbsp;<label>Country </label>&nbsp;<input type="text" id="address_country"  name="address_country" onfocusin="stripe.minicart.myStripe.myfocus(event);" size="11" value="" /></td></tr>
 	<% } %>
 <tr> <td colspan="2">
         <label>Card #</label>
-        <input type="text" size="18" autocomplete="off" class="card-number input-medium" value="">
-      &nbsp;&nbsp;&nbsp;<label>CVC</label> <input type="text" size="3" autocomplete="off" class="card-cvc input-mini" value="">
+        <input type="text" size="18" autocomplete="off" id="cardnumber" class="card-number input-medium" onfocusin="stripe.minicart.myStripe.myfocus(event);" value="">
+      &nbsp;&nbsp;&nbsp;<label>CVC</label> <input type="text" id="ccvc" size="3" autocomplete="off" class="card-cvc input-mini" value="">
 </td></tr>
 <tr> <td colspan="2">
         <label>Expire (MM&nbsp;/&nbsp;YYYY)&nbsp;</label>
-        <input type="text" size="2" class="card-expiry-month input-mini" value="">
+        <input type="text" size="2" class="card-expiry-month input-mini" id="cexpiremonth" onfocusin="stripe.minicart.myStripe.myfocus(event);" value="">
         <span>&nbsp;/&nbsp;</span>
-        <input type="text" size="4" class="card-expiry-year input-mini" value="">
+        <input type="text" size="4" class="card-expiry-year input-mini" id="cexireyeae" onfocusin="stripe.minicart.myStripe.myfocus(event);" value="">
 </td></tr>
 <tr> <td colspan="2">
       <div id="payment-message"></div>

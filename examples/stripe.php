@@ -45,6 +45,23 @@ session_start();
 			<input type="submit" name="submit" value="Add to cart" />
 		</fieldset>
 	</form>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+<h2> Hello World! </h2>
+
 
 <?php
 echo '<script type="text/javascript">Stripe.setPublishableKey("' . STRIPE_PUBLIC_KEY . '");</script>';
@@ -57,15 +74,14 @@ echo '<script type="text/javascript">Stripe.setPublishableKey("' . STRIPE_PUBLIC
 	   userAddressRequired: 1
         });
 
-		stripe.minicart.cart.on('checkout', function (evt) {
+	stripe.minicart.cart.on('checkout', function (evt) {
 			evt.preventDefault();
         
             // stripe submit 
             // (1) gether credit cart info and send to stripe.com to get token            // (2) Insert token into form and submit the form (action)
             // (3) Form action will communicate to stripe.com and charge
             stripe.minicart.myStripe.submit();
-		});
-
+	});
 	</script>
 </body>
 </html>
