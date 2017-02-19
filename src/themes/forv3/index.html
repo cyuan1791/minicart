@@ -1,0 +1,143 @@
+<%
+var items = cart.items();
+var settings = cart.settings();
+var hasItems = !!items.length;
+var priceFormat = { format: true, currency: cart.settings("currency_code") };
+var totalFormat = { format: true, showCode: true };
+%>
+<form  id="payment-form" method="post" class="<% if (!hasItems) { %>minicart-empty<% } %>" action="<%= config.action %>" target="<%= config.target %>">
+    <button type="button" id="minicart-close" class="minicart-closer">&times;</button>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" class="btn btn-success" style="color: white;"  data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+	Shopping Cart
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+    <ul>
+        <% for (var i= 0, idx = i + 1, len = items.length; i < len; i++, idx++) { %>
+        <li class="minicart-item">
+            <div class="minicart-details-name">
+                <a class="minicart-name" href="<%= items[i].get("href") %>"><%= items[i].get("item_name") %></a>
+                <ul class="minicart-attributes">
+                    <% if (items[i].get("item_number")) { %>
+                    <li>
+                        <%= items[i].get("item_number") %>
+                        <input type="hidden" name="item_number_<%= idx %>" value="<%= items[i].get("item_number") %>" />
+                    </li>
+                    <% } %>
+                    <% if (items[i].discount()) { %>
+                    <li>
+                        <%= config.strings.discount %> <%= items[i].discount(priceFormat) %>
+                        <input type="hidden" name="discount_amount_<%= idx %>" value="<%= items[i].discount() %>" />
+                    </li>
+                    <% } %>
+                    <% for (var options = items[i].options(), j = 0, len2 = options.length; j < len2; j++) { %>
+                        <li>
+                            <%= options[j].key %>: <%= options[j].value %>
+                            <input type="hidden" name="on<%= j %>_<%= idx %>" value="<%= options[j].key %>" />
+                            <input type="hidden" name="os<%= j %>_<%= idx %>" value="<%= options[j].value %>" />
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="minicart-details-quantity">
+                <input class="minicart-quantity" data-minicart-idx="<%= i %>" name="quantity_<%= idx %>" type="text" pattern="[0-9]*" value="<%= items[i].get("quantity") %>" autocomplete="off" />
+            </div>
+            <div class="minicart-details-remove">
+                <button type="button" class="minicart-remove" data-minicart-idx="<%= i %>">&times;</button>
+            </div>
+            <div class="minicart-details-price">
+                <span class="minicart-price"><%= items[i].total(priceFormat) %></span>
+            </div>
+            <input type="hidden" name="item_name_<%= idx %>" value="<%= items[i].get("item_name") %>" />
+            <input type="hidden" name="amount_<%= idx %>" value="<%= items[i].amount() %>" />
+            <input type="hidden" name="shipping_<%= idx %>" value="<%= items[i].get("shipping") %>" />
+            <input type="hidden" name="shipping2_<%= idx %>" value="<%= items[i].get("shipping2") %>" />
+            <input type="hidden" name="subTotal" value="<%= cart.subtotal() %>" />
+        </li>
+        <% } %>
+    
+    <li id="form-submit" class="minicart-item" style="text-align: right;">
+        <% if (hasItems) { %>
+                <%= config.strings.subtotal %> <%= cart.total(totalFormat) %>
+        <% } else { %>
+            <p class="minicart-empty-text"><%= config.strings.empty %></p>
+        <% } %>
+    </li>
+
+    </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+	<span class="btn btn-danger">Payment</span>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+<table class="table table-condensed">
+	<% if (config.userInfoRequired) { %>
+         <tr> <td><label>Email</label> </td><td><input type="text" id="email" name="Email" size=30 value="" onfocusin="stripe.minicart.myStripe.myfocus(event);" /></td></tr>
+         <tr> <td><label>Name</label></td><td><input type="text" id="name" name="name" size=30 value="" onfocusin="stripe.minicart.myStripe.myfocus(event);"  /></td></tr>
+	<% } %>
+	<% if (config.userAddressRequired) { %>
+         <tr> <td><label>Addr</label></td><td><input type="text" id="address_line1" name="address_line1" onfocusin="stripe.minicart.myStripe.myfocus(event);" size=30 value="" /></td></tr>
+         <tr> <td><label>City </label></td><td><input type="text" id="address_city" name="address_city" onfocusin="stripe.minicart.myStripe.myfocus(event);" size=18 value="" />
+         &nbsp;&nbsp;&nbsp;<label>State </label>&nbsp;<input type="text" id="address_state" onfocusin="stripe.minicart.myStripe.myfocus(event);" name="address_state" size="2" value="" /> </td></tr>
+         <tr> <td><label>Zip </label></td><td><input type="text" id="address_zip" onfocusin="stripe.minicart.myStripe.myfocus(event);" name="address_zip" size="5" value="" />
+         &nbsp; &nbsp; &nbsp;
+         &nbsp;<label>Country </label>&nbsp;<input type="text" id="address_country"  name="address_country" onfocusin="stripe.minicart.myStripe.myfocus(event);" size="11" value="" /></td></tr>
+	<% } %>
+<tr> <td colspan="2">
+        <label>Card #</label>
+        <input type="text" size="18" autocomplete="off" id="cardnumber" class="card-number input-medium" onfocusin="stripe.minicart.myStripe.myfocus(event);" value="">
+      &nbsp;&nbsp;<label>CVC</label> <input type="text" id="ccvc" size="3" autocomplete="off" class="card-cvc input-mini" value="">
+</td></tr>
+<tr> <td colspan="2">
+        <label>Expire (MM&nbsp;/&nbsp;YYYY)&nbsp;</label>
+        <input type="text" size="2" class="card-expiry-month input-mini" id="cexpiremonth" onfocusin="stripe.minicart.myStripe.myfocus(event);" value="">
+        <span>&nbsp;/&nbsp;</span>
+        <input type="text" size="4" class="card-expiry-year input-mini" id="cexireyeae" onfocusin="stripe.minicart.myStripe.myfocus(event);" value="">
+</td></tr>
+<tr> <td colspan="2">
+      <div id="payment-message"></div>
+      <div id="payment-processing">
+        <% if (hasItems) { %>
+            <table class="table table-striped">
+            <tr><td>
+            <h5  class="text-warning">
+                <%= config.strings.subtotal %> <%= cart.total(totalFormat) %>
+            </h5>
+            </td> <td>
+            <button class="btn btn-info" type="submit" id="submitBtn" data-minicart-alt="<%= config.strings.buttonAlt %>"><%- config.strings.button %></button>
+            </div>
+            </td></table>
+        <% } else { %>
+            <p class="minicart-empty-text"><%= config.strings.empty %></p>
+        <% } %>
+       </div>
+</td></tr>
+</table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <input type="hidden" name="cmd" value="_cart" />
+    <input type="hidden" name="upload" value="1" />
+    <% for (var key in settings) { %>
+        <input type="hidden" name="<%= key %>" value="<%= settings[key] %>" />
+    <% } %>
+</form>
