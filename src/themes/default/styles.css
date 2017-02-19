@@ -29,6 +29,10 @@
     -moz-animation: pop-in 0.25s;
 }
 
+.minitext {
+   font-size: 12px;
+}
+
 #PPMiniCart {
     display: none;
     position: fixed;
@@ -52,7 +56,7 @@
 
 #PPMiniCart form.minicart-empty {
     padding-bottom: 10px;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
 }
 
@@ -80,7 +84,7 @@
     padding: 20px;
     background: 0;
     border: 0;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
     font-weight: bold;
 }

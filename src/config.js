@@ -25,6 +25,16 @@ var defaults = module.exports = {
     userAddressRequired: 0,
 
     strings: {
+	email: 'Email',
+	phone: 'Phone',
+	name: 'Name',
+	address: 'Addr',
+	zip: 'Zip',
+	country: 'Country',
+	card: 'Card',
+	expire: 'Expire',
+	payment: 'Payment',
+	shoppingCart: 'Shopping Cart',
         button: 'Check Out',
         subtotal: 'Subtotal:',
         discount: 'Discount:',
