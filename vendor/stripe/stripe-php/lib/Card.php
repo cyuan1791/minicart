@@ -2,58 +2,36 @@
 
 namespace Stripe;
 
-class Card extends ApiResource
+/**
+ * Class Card
+ *
+ * @property string $id
+ * @property string $object
+ * @property string $address_city
+ * @property string $address_country
+ * @property string $address_line1
+ * @property string $address_line1_check
+ * @property string $address_line2
+ * @property string $address_state
+ * @property string $address_zip
+ * @property string $address_zip_check
+ * @property string $brand
+ * @property string $country
+ * @property string $customer
+ * @property string $cvc_check
+ * @property string $dynamic_last4": null,
+ * @property int $exp_month
+ * @property int $exp_year
+ * @property string $fingerprint
+ * @property string $funding
+ * @property string $last4
+ * @property mixed $metadata
+ * @property string $name
+ * @property string $tokenization_method
+ *
+ * @package Stripe
+ */
+class Card extends ExternalAccount
 {
-    /**
-     * @return string The instance URL for this resource. It needs to be special
-     *    cased because it doesn't fit into the standard resource pattern.
-     */
-    public function instanceUrl()
-    {
-        $id = $this['id'];
-        if (!$id) {
-            $class = get_class($this);
-            $msg = "Could not determine which URL to request: $class instance "
-             . "has invalid ID: $id";
-            throw new Error\InvalidRequest($msg, null);
-        }
 
-        if (isset($this['customer'])) {
-            $parent = $this['customer'];
-            $base = Customer::classUrl();
-        } elseif (isset($this['recipient'])) {
-            $parent = $this['recipient'];
-            $base = Recipient::classUrl();
-        } else {
-            return null;
-        }
-
-        $parent = Util\Util::utf8($parent);
-        $id = Util\Util::utf8($id);
-
-        $parentExtn = urlencode($parent);
-        $extn = urlencode($id);
-        return "$base/$parentExtn/cards/$extn";
-    }
-
-    /**
-     * @param array|null $params
-     * @param array|string|null $opts
-     *
-     * @return Card The deleted card.
-     */
-    public function delete($params = null, $opts = null)
-    {
-        return $this->_delete($params, $opts);
-    }
-
-    /**
-     * @param array|string|null $opts
-     *
-     * @return Card The saved card.
-     */
-    public function save($opts = null)
-    {
-        return $this->_save($opts);
-    }
 }

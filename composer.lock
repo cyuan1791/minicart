@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "50e1cca462f0dcbaa5dbfd4ba106a74e",
+    "hash": "ae90394c936d40a33aaf9fb737fab265",
     "packages": [
         {
             "name": "stripe/stripe-php",
-            "version": "v2.1.4",
+            "version": "v5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "522ff8b9a93e293188c1b4c0ef7ff40048b326f8"
+                "reference": "d102a355d8c2e1a00d68659e9b51fb6f63aaa957"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/522ff8b9a93e293188c1b4c0ef7ff40048b326f8",
-                "reference": "522ff8b9a93e293188c1b4c0ef7ff40048b326f8",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/d102a355d8c2e1a00d68659e9b51fb6f63aaa957",
+                "reference": "d102a355d8c2e1a00d68659e9b51fb6f63aaa957",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2015-05-13 21:04:00"
+            "time": "2017-10-11 16:41:44"
         }
     ],
     "packages-dev": [],
@@ -67,6 +67,7 @@
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }
