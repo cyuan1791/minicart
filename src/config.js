@@ -38,6 +38,12 @@ var defaults = module.exports = {
         button: 'Check Out',
         subtotal: 'Subtotal:',
         discount: 'Discount:',
+        invalidCarditCardNumber: 'The credit card number appears to be invalid.',
+        invalidCVC: 'The CVC number appears to be invalid.',
+        invalidExpireDate: 'The expiration date appears to be invalid.',
+        paymentProcessing: 'Payment processing. Please wait!',
+        pleaseEnter: 'Please enter ',
+	doneMsg: 'Finished/Click Me',
         empty: 'Your shopping cart is empty'
     }
 

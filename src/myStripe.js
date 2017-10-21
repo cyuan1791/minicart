@@ -24,7 +24,8 @@ myStripe.prototype.submit = function submit () {
 		// Flag variable:
 		var error = false;
 
-		this.reportMessage('Payment processing. Please wait!');
+		//this.reportMessage('Payment processing. Please wait!');
+		this.reportMessage(config.strings.paymentProcessing);
 		// Get the values:
 		//var ccNum = $('.card-number').val(), cvcNum = $('.card-cvc').val(), expMonth = $('.card-expiry-month').val(), expYear = $('.card-expiry-year').val();
 		var ccNum = $('.card-number').val().replace(/-|\s/g,""), cvcNum = $('.card-cvc').val().replace(/-|\s/g,""), expMonth = $('.card-expiry-month').val().replace(/-|\s/g,""), expYear = $('.card-expiry-year').val().replace(/-|\s/g,"");
@@ -33,48 +34,62 @@ myStripe.prototype.submit = function submit () {
 		// Validate the expiration:
 		if (!Stripe.card.validateExpiry(expMonth, expYear)) {
 			error = true;
-			this.reportMessage('The expiration date appears to be invalid.');
+			//this.reportMessage('The expiration date appears to be invalid.');
+			this.reportMessage(config.strings.invalidExpireDate);
 		}
 
 		// Validate the CVC:
 		if (!Stripe.card.validateCVC(cvcNum)) {
 			error = true;
-			this.reportMessage('The CVC number appears to be invalid.');
+			//this.reportMessage('The CVC number appears to be invalid.');
+			this.reportMessage(invalidCVC);
 		}
 		// Validate the number:
 		if (!Stripe.card.validateCardNumber(ccNum)) {
 			error = true;
-			this.reportMessage('The credit card number appears to be invalid.');
+			//this.reportMessage('The credit card number appears to be invalid.');
+			this.reportMessage(config.strings.invalidCarditCardNumber);
 		}
 
 
 		if (config.userAddressRequired) {
         		if ($('#address_zip').val() === "") {
 				error = true;
-				this.reportMessage('Please enter zip');
+				mymsg = config.strings.pleaseEnter + config.strings.zip;
+				this.reportMessage(mymsg)
 			}
         		if ($('#address_state').val() === "") {
 				error = true;
-				this.reportMessage('Please enter state');
+				mymsg = config.strings.pleaseEnter + config.strings.state;
+				this.reportMessage(mymsg)
 			}
         		if ($('#address_city').val() === "") {
 				error = true;
-				this.reportMessage('Please enter city');
+				mymsg = config.strings.pleaseEnter + config.strings.city;
+				this.reportMessage(mymsg)
 			}
         		if ($('#address_line1').val() === "") {
 				error = true;
-				this.reportMessage('Please enter Address');
+				mymsg = config.strings.pleaseEnter + config.strings.address;
+				this.reportMessage(mymsg)
 			}
 		}
 
 		if (config.userInfoRequired) {
         		if ($('#name').val() === "") {
 				error = true;
-				this.reportMessage('Please enter Name');
+				mymsg = config.strings.pleaseEnter + config.strings.name;
+				this.reportMessage(mymsg)
 			}
         		if ($('#email').val() === "") {
 				error = true;
-				this.reportMessage('Please enter Email');
+				mymsg = config.strings.pleaseEnter + config.strings.email;
+				this.reportMessage(mymsg)
+			}
+        		if ($('#phone').val() === "") {
+				error = true;
+				mymsg = config.strings.pleaseEnter + config.strings.phone;
+				this.reportMessage(mymsg)
 			}
 		}
 
@@ -136,7 +151,7 @@ myStripe.prototype.stripeResponseHandler =  function stripeResponseHandler(statu
                 var text = data.substring(startTag + 10, endTag);
                 //$("#result").html(text);
                 //$(stripe.minicart.config.result).html(text);
-		$('#payment-message').html(text + '<br /><span id="paymentDone" class="btn btn-info" style="text-align:center;">Done(Click Me)</span>').addClass('alert alert-danger');
+		$('#payment-message').html(text + '<br /><span id="paymentDone" class="btn btn-info" style="text-align:center;">' + config.strings.doneMsg + '</span>').addClass('alert alert-danger');
 		$('#paymentDone').click( function() {
                    stripe.minicart.reset();
 		});
