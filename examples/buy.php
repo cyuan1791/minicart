@@ -69,6 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['name'])) {
 	   $desc .= '| '. $_POST['name'] ; 
         }
+	if (isset($_POST['phone'])) {
+	   $desc .= '| '. $_POST['phone'] ; 
+        }
 	if (isset($_POST['address_line1'])) {
 	   $desc .= '| '.$_POST['address_line1']; 
 	   $desc .= ' '.$_POST['address_city']; 
@@ -76,6 +79,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	   $desc .= ' '.$_POST['address_zip']; 
 	   $desc .= ', '.$_POST['address_country']; 
 	}
+	$itemNo = intval($_POST['itemNo']);
+
+	$desc .= '| order details : ';
+        foreach (range(1, $itemNo, 1) as $n) {
+	   $desc .= 'item name :  '.$_POST['item_name'][$n]; 
+	   $desc .= ',quantity :  '.$_POST['quantity'][$n]; 
+	   $desc .= ',price :  |'.$_POST['amount'][$n]; 
+	}
+	
 
 	// Validate other form data!
 
