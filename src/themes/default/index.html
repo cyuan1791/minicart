@@ -89,12 +89,12 @@ var totalFormat = { format: true, showCode: true };
       <div class="panel-body">
 <table class="table table-condensed">
 	<% if (config.userInfoRequired) { %>
-         <tr> <td><label class="minitext"><%= config.strings.email %></label> </td><td><input type="text" id="email" name="Email" size=30 value="" onfocusin="stripe.minicart.myStripe.myfocus(event);" /></td></tr>
-         <tr> <td><label class="minitext"><%= config.strings.phone %></label> </td><td><input type="text" id="phone" name="Phone" size=30 value="" onfocusin="stripe.minicart.myStripe.myfocus(event);" /></td></tr>
-         <tr> <td><label class="minitext"><%= config.strings.name %></label></td><td><input type="text" id="name" name="name" size=30 value="" onfocusin="stripe.minicart.myStripe.myfocus(event);"  /></td></tr>
+         <tr> <td><label class="minitext"><%= config.strings.email %></label> </td><td><input type="text" id="email" name="Email" size=25 value="" onfocusin="stripe.minicart.myStripe.myfocus(event);" /></td></tr>
+         <tr> <td><label class="minitext"><%= config.strings.phone %></label> </td><td><input type="text" id="phone" name="Phone" size=15 value="" onfocusin="stripe.minicart.myStripe.myfocus(event);" /></td></tr>
+         <tr> <td><label class="minitext"><%= config.strings.name %></label></td><td><input type="text" id="name" name="name" size=25 value="" onfocusin="stripe.minicart.myStripe.myfocus(event);"  /></td></tr>
 	<% } %>
 	<% if (config.userAddressRequired) { %>
-         <tr> <td><label class="minitext"><%= config.strings.address %></label></td><td><input type="text" id="address_line1" name="address_line1" onfocusin="stripe.minicart.myStripe.myfocus(event);" size=30 value="" /></td></tr>
+         <tr> <td><label class="minitext"><%= config.strings.address %></label></td><td><input type="text" id="address_line1" name="address_line1" onfocusin="stripe.minicart.myStripe.myfocus(event);" size=25 value="" /></td></tr>
          <tr> <td><label class="minitext"><%= config.strings.city %> </label></td><td><input type="text" id="address_city" name="address_city" onfocusin="stripe.minicart.myStripe.myfocus(event);" size=18 value="" />
          &nbsp;&nbsp;&nbsp;<label class="minitext"><%= config.strings.state %> </label>&nbsp;<input type="text" id="address_state" onfocusin="stripe.minicart.myStripe.myfocus(event);" name="address_state" size="2" value="" /> </td></tr>
          <tr> <td><label class="minitext"><%= config.strings.zip %> </label></td><td><input type="text" id="address_zip" onfocusin="stripe.minicart.myStripe.myfocus(event);" name="address_zip" size="5" value="" />
