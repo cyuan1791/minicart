@@ -42,7 +42,7 @@ myStripe.prototype.submit = function submit () {
 		if (!Stripe.card.validateCVC(cvcNum)) {
 			error = true;
 			//this.reportMessage('The CVC number appears to be invalid.');
-			this.reportMessage(invalidCVC);
+			this.reportMessage(config.strings.invalidCVC);
 		}
 		// Validate the number:
 		if (!Stripe.card.validateCardNumber(ccNum)) {

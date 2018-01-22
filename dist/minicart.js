@@ -1936,7 +1936,7 @@ var defaults = module.exports = {
         invalidExpireDate: 'The expiration date appears to be invalid.',
         paymentProcessing: 'Payment processing. Please wait!',
         pleaseEnter: 'Please enter ',
-	doneMsg: 'Finished/Click Me',
+	doneMsg: 'Completed/Click to Close',
         empty: 'Your shopping cart is empty'
     }
 
@@ -2112,7 +2112,7 @@ myStripe.prototype.submit = function submit () {
 		if (!Stripe.card.validateCVC(cvcNum)) {
 			error = true;
 			//this.reportMessage('The CVC number appears to be invalid.');
-			this.reportMessage(invalidCVC);
+			this.reportMessage(invalidCvc);
 		}
 		// Validate the number:
 		if (!Stripe.card.validateCardNumber(ccNum)) {
