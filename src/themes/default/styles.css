@@ -44,7 +44,7 @@
     position: relative;
     width: 310px;
     max-height: 500px;
-    margin-left: -200px;
+    margin-left: -190px;
     padding: 0px 0px 40px;
     background: #fbfbfb;
     border: 1px solid #d7d7d7;
@@ -80,11 +80,12 @@
 
 #PPMiniCart .minicart-closer {
     float: right;
-    margin: -12px -10px 0;
-    padding: 20px;
+    margin: 0;
+    padding: 10px 20px;
+    color: white;
     background: 0;
     border: 0;
-    font-size: 14px;
+    font-size: 24px;
     cursor: pointer;
     font-weight: bold;
 }
@@ -107,12 +108,14 @@
 
 #PPMiniCart .minicart-details-name {
     float: left;
-    width: 62%;
+    width: 55%;
+    padding: 4px;
 }
 
 #PPMiniCart .minicart-details-quantity {
     float: left;
     width: 15%;
+    padding: 3px;
 }
 
 #PPMiniCart .minicart-details-remove {
@@ -122,8 +125,9 @@
 
 #PPMiniCart .minicart-details-price {
     float: left;
-    width: 16%;
+    width: 23%;
     text-align: right;
+    padding: 5px;
 }
 
 #PPMiniCart .minicart-attributes {

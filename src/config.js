@@ -43,7 +43,7 @@ var defaults = module.exports = {
         invalidExpireDate: 'The expiration date appears to be invalid.',
         paymentProcessing: 'Payment processing. Please wait!',
         pleaseEnter: 'Please enter ',
-	doneMsg: 'Finished/Click Me',
+	doneMsg: 'Completed/Click to Close',
         empty: 'Your shopping cart is empty'
     }
 

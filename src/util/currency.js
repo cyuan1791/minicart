@@ -76,7 +76,7 @@ module.exports = function currency(amount, config) {
         result = amount;
 
     if (config && config.format) {
-        result = before + result.toFixed(length) + after;
+        result = before + ' ' + result.toFixed(length) + after;
     }
 
     if (showCode) {
